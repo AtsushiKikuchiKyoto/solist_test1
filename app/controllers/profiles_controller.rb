@@ -21,6 +21,8 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
+    @profiles = current_user.profiles.all
   end
 
   def edit

@@ -14,39 +14,17 @@
     <nav id="dropdownMenu" class="dropdown-menu">
         <ul>
             <li><%= link_to "新規プロフィール作成", new_profile_path %></li>
-            <li><a href="#profile">ダミーダミー</a></li>
-            <li><a href="#settings">ダミーダミー</a></li>
+            <li>~プロフィール一覧~</li>
+            <% @profiles.each do |profile| %>
+              <li><%= link_to profile.name, profile_path(profile.id) %></li>
+            <% end %>
             <li><%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}%></li>
         </ul>
     </nav>
 
     <main>
 <%# -------サウンド部分------- %>
-      <div class="sounds-box">
-        <% @sounds.each do |sound| %>
-          <div class="sound-each">
-            <div class="sound-top">
-              <%= image_tag sound.profile.image.variant(resize: '100x100'), class: "sound-profile" %>
-              <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
-            </div>
-            <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
-          </div>
-        <% end %>
-      </div>
+<%= render partial: "sounds/soundBox", locals: { sounds: @sounds } %>
 
     </main>
 </body>
-
-<%#  %>
-
-  <% if user_signed_in? %>
-    <div>ログイン中</div>
-    <%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}%>
-  <% else %>
-    <div>ログインしていない</div>
-    <%= link_to "ログイン", new_user_session_path %>
-    <%= link_to "新規登録", new_user_registration_path %>
-  <% end %>
-<div>
-
-</div>

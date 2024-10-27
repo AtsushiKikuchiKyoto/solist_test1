@@ -1,10 +1,33 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<body>
+    <header>
+        <div class="header-left">
+            <%= image_tag @profile.image.variant(resize: '100x100'),class: "avatar" %>
 
-<%= image_tag @profile.image.variant(resize: '500x500') %>
-<%= @profile.name %>
-<%= @profile.text %>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">Solist</h1>
+        </div>
+        <div class="header-right">
+            <%= image_tag "menu.png", class: "menu-icon", id: "menu-icon" %>
+        </div>
+    </header>
 
-<%= link_to "演奏者情報の編集", edit_profile_path(@profile.id) %>
-<%= link_to "演奏者情報の削除", profile_path(@profile.id), data: {turbo_method: :delete} %>
-<%= link_to "演奏者のトップページ", profile_sounds_path(@profile.id) %>
+    <nav id="dropdownMenu" class="dropdown-menu">
+        <ul>
+            <li><%= link_to "新規プロフィール作成", new_profile_path %></li>
+            <li><%= link_to "#{@profile.name}の編集", edit_profile_path(@profile.id) %></li>
+            <li><%= link_to "#{@profile.name}の削除", profile_path(@profile.id), data: {turbo_method: :delete} %></li>
+            <li>~プロフィール一覧~</li>
+            <% @profiles.each do |profile| %>
+              <li><%= link_to profile.name, profile_path(profile.id) %></li>
+            <% end %>
+            <li><%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}%></li>
+        </ul>
+    </nav>
+
+    <main>
+<%# -------サウンド部分------- %>
+<%= render partial: "sounds/soundBox", locals: { sounds: @sounds } %>
+
+    </main>
+</body>

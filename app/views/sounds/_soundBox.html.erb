@@ -1,0 +1,11 @@
+<div class="sounds-box">
+  <% sounds.each do |sound| %>
+    <div class="sound-each">
+      <div class="sound-top">
+        <%= image_tag sound.profile.image.variant(resize: '100x100'), class: "sound-profile" %>
+        <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
+      </div>
+      <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
+    </div>
+  <% end %>
+</div>
