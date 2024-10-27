@@ -5,5 +5,5 @@ class Profile < ApplicationRecord
   belongs_to :user
   has_many :sounds
   has_many :comments
-  
+  validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], size: { less_than: 500.kilobytes }
 end

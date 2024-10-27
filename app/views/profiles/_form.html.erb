@@ -24,17 +24,27 @@
 <main>
   <section class="profile-new">
     <h2>プロフィールを新規作成する</h2>
-    <p>プロフィールはいくつでも作成できます。楽器ごとに異なる顔を持ちましょう！</p>
+    <p>プロフィールはいくつでも作成できます。楽器ごとに異なる顔を持ちましょう！</p><br>
 
-<%= form_with model: profile, local: true do |f| %>
-      <p>画像ファイル</p>
-  <%= f.file_field :image, class: "profile-form-file" %>
-      <p>名前</p>
-  <%= f.text_field :name, class: "profile-form-name" %>
-      <p>紹介文</p>
-  <%= f.text_area :text, class: "profile-form-text" %>
-  <%= f.submit "作成する", class: "profile-form-submit" %>
-<% end %>
+    <%= form_with model: profile, local: true do |f| %>
+      <p>画像ファイル(500kb以下)</p>
+      <%= f.file_field :image, class: "profile-form-file" %>
+          <%# エラーメッセージ %>
+          <% if profile.errors[:image].any? %>
+            <div class="error-messages">
+              <% profile.errors[:image].each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            </div>
+          <% end %>
+
+      <p>名前(必須)</p>
+      <%= f.text_field :name, class: "profile-form-name" %>
+      <p>紹介文(必須)</p>
+      <%= f.text_field :text, class: "profile-form-text" %>
+      <%= f.submit "作成する", class: "profile-form-submit" %>
+    <% end %>
+  
 
   </section>
 </main>
