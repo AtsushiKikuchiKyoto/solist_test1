@@ -1,0 +1,39 @@
+<h1>Sounds#index</h1>
+<p>Find me in app/views/sounds/index.html.erb</p>
+<%= link_to "現在の演奏者で新規投稿", new_profile_sound_path(@profile.id) %>
+
+<div>現在の演奏者：<%= @profile.name %></div>
+<%= image_tag @profile.image.variant(resize: '200x200') %>
+<%= link_to "現在の演奏者のページ", profile_path(@profile.id) %>
+
+</br>
+</br>
+</br>
+
+<div>
+<% @sounds.each do |sound| %>
+  <div>
+    <%= image_tag sound.profile.image.variant(resize: '100x100') %>
+    <%= sound.profile.name %>
+    <%= link_to "サウンドの演奏者", profile_path(sound.profile.id) %>
+  </div>
+  <div>
+    <%= audio_tag url_for(sound.sound), controls: true %>
+    <%= sound.text %>
+    <%= link_to "サウンドの詳細", profile_sound_path(sound.profile.id,sound.id) %>
+  </div>
+  <div>
+    <%= form_with model: [@profile, sound, @comment], local: true do |f| %>
+      <%= f.text_area :text %>
+      <%= f.submit "SEND" %>
+    <% end %>
+    <% sound.comments.each do |comment| %>
+      <div>
+        <%= image_tag comment.profile.image.variant(resize: '20x20') %>
+        <%= comment.text %>
+        <%= link_to "削除", profile_sound_comment_path(comment.profile.id, sound.id, comment.id), data: {turbo_method: :delete} %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,5 @@
+<%= form_with model: [profile, sound], local: true do |f| %>
+  <%= f.file_field :sound %>
+  <%= f.text_area :text, placeholder: "BBB", rows: "10" %>
+  <%= f.submit "SEND" %>
+<% end %>

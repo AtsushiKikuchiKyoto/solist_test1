@@ -1,0 +1,11 @@
+<h1>Sounds#show</h1>
+<p>Find me in app/views/sounds/show.html.erb</p>
+
+<%= image_tag @profile.image.variant(resize: '100x100') %>
+<%= @profile.name %>
+
+<%= audio_tag url_for(@sound.sound), controls: true %>
+<%= @sound.text %>
+
+<%= link_to "編集", edit_profile_sound_path(@profile.id, @sound.id) %>
+<%= link_to "削除", profile_sound_path(@profile.id, @sound.id), data: {turbo_method: :delete} %>
