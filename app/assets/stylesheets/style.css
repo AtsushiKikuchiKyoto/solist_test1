@@ -209,8 +209,15 @@ main {
 }
 /* ---------エラー表示--------- */
 .error-alert{
-  border-radius: 5px solid black;
+  border: solid 1px gray;
+  border-radius: 2px;
   background-color: white;
+  text-align: center;
+  padding: 10px;
+}
+.error-message{
+  list-style: none;
+  color: darkred;
 }
 /* ---------共通フォント--------- */
 
