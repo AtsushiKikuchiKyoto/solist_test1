@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      profile: プロフィール
+    attributes:
+       profile:
+         name: 名前
+         text: 紹介文
+         image: アバター画像 

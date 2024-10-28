@@ -7,11 +7,10 @@
 <main>
   <section class="user-login" id="devise">
     <h2>ログイン画面</h2>
-    <p>いつもありがとうございます！</p>
     <p><%= link_to '新規登録の方はこちら', new_user_registration_path %></p>
 
     <%# ログイン時のエラーメッセージ  %>
-    <div class='login-flash-message'>
+    <div>
       <%= flash[:notice] %>
       <%= flash[:alert] %>
     </div>

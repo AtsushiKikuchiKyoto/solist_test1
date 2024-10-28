@@ -7,20 +7,25 @@
 <main>
   <section class="user-signup" id="devise">
     <h2>新規登録画面</h2>
-    <p>はじめまして、ようこそ！</p>
     <p><%= link_to '登録済みの方はこちら', new_user_session_path %></p>
 
-    <%# ログイン時のエラーメッセージ  %>
-    <div class='login-flash-message'>
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
+    <%# 新規登録時のエラーメッセージ  %>
+    <div>
+      <% if resource.errors.any? %>
+          <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
     </div>
 
-    <%= form_with model: @user, url: user_session_path, class: "user-form", local: true do |f| %>
+    <%= form_with model: @user, url: user_registration_path, class: "user-form", local: true do |f| %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-form-field" %>
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "user-form-field" %>
         <%= f.password_field :password_confirmation, autocomplete: "current-password", placeholder: "パスワード確認", class: "user-form-field" %>
-      <%= f.submit "ログイン",class: "user-form-submit" %>
+      <%= f.submit "新規登録",class: "user-form-submit" %>
     <% end %>
   </section>
 </main>
+
