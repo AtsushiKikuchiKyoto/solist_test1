@@ -1,14 +1,9 @@
 <%= form_with model: profile, local: true do |f| %>
   <p>画像ファイル(500kb以下)</p>
   <%= f.file_field :image, class: "profile-form-file" %>
-      <%# エラーメッセージ %>
-      <% if profile.errors[:image].any? %>
-        <div class="error-messages">
-          <% profile.errors[:image].each do |message| %>
-            <p><%= message %></p>
-          <% end %>
-        </div>
-      <% end %>
+
+<%# --------エラーメッセージ--------- %>
+<%= render 'layouts/error', model: f.object %>
 
   <p>名前(必須)</p>
   <%= f.text_field :name, class: "profile-form-name" %>

@@ -1,4 +1,26 @@
+<body>
+    <header>
 
+<%# -------ヘッダー部分------- %>
+<%= render partial: "header", locals: { profile: @profile } %>
 
+    </header>
 
+    <nav id="dropdownMenu" class="dropdown-menu">
+    
+<%# -------メニュー部分------- %>
+<%= render partial: "menu", locals: { profile: @profile, profiles: @profiles } %>
+
+    </nav>
+
+<main>
+  <section class="profile-new">
+    <h2>プロフィールを新規作成する</h2>
+    <p>プロフィールはいくつでも作成できます。楽器ごとに異なる顔を持ちましょう！</p><br>
+
+<%# _formへ切り出し %>
 <%= render partial: "form", locals: { profile: @profile } %>
+
+  </section>
+</main>
+</body>
