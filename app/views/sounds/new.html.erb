@@ -1,4 +1,22 @@
-<h1>Sounds#new</h1>
-<p>Find me in app/views/sounds/new.html.erb</p>
+<body>
+    <header>
+      <%# -------ヘッダー部分------- %>
+      <%= render partial: "profiles/header", locals: { profile: @profile } %>
+    </header>
 
-<%= render partial: "form", locals: { profile: @profile, sound: @sound } %>
+    <nav id="dropdownMenu" class="dropdown-menu">
+      <%# -------メニュー部分------- %>
+      <%= render partial: "profiles/menu", locals: { profile: @profile, profiles: @profiles } %>
+    </nav>
+
+<main>
+  <section class="sound-new">
+    <h2>サウンドを新規投稿する</h2>
+    <p>間違っていても大丈夫。気軽に音楽をアウトプットしましょう！</p><br>
+
+    <%# _formへ切り出し %>
+    <%= render partial: "form", locals: { profile: @profile, sound: @sound } %>
+
+  </section>
+</main>
+</body>

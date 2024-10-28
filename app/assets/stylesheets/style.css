@@ -31,8 +31,8 @@ header {
 }
 
 .header-left .avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 10%;
 }
 
@@ -46,7 +46,7 @@ header {
 }
 
 .header-right .menu-icon {
-  width: 30px;
+  width: 40px;
   cursor: pointer;
 }
 /* ---------ドロップダウンメニューリスト--------- */
@@ -129,6 +129,11 @@ main {
   height: 40px;
   width: 360px;
 }
+.sound-actions{
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-around;
+}
 
 /* ---------ログインサインアップ--------- */
 .login-header{
@@ -207,6 +212,74 @@ main {
   background-color: grey;
   color: white;
 }
+/* ---------サウンドフォーム--------- */
+.sound-new{
+  margin: 30px auto ;
+  width: 400px;
+  font-size: 15px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.sound-form-file{
+  margin: 10px 0 20px;
+}
+.sound-form-text,.sound-form-submit{
+  height: 40px;
+  width: 100%;
+  margin: 10px 0 20px;
+  font-size: medium;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.sound-form-text{
+  height: 60px;
+}
+/* ---------プロフィール部品--------- */
+.profile-box{
+  width: 400px;
+  margin: 0 auto 30px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: absolute;
+  top: 100px;
+  left: calc( 50% - 200px);
+}
+.profile-left{
+  height: 100px;
+  width: 100px;
+}
+.profile-profile{
+  width: 100px;
+  height: 100px;
+  border-radius: 10%;
+}
+.profile-right{
+  width: 100%;
+  height: 90px;
+}
+.profile-name{
+  margin-left: 10px;
+}
+.profile-text{
+  margin-left: 10px;
+  padding: 4px;
+  width: 100%;
+  height: 75px;
+  font-size: medium;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: scroll;
+}
+.profile-margin{
+  height: 150px;
+}
+
 /* ---------エラー表示--------- */
 .error-alert{
   border: solid 1px gray;
@@ -221,7 +294,7 @@ main {
 }
 /* ---------共通フォント--------- */
 
-.user-login,.user-signup,.sound-text,.error-message,.profile-new{
+.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   color: red;
 }

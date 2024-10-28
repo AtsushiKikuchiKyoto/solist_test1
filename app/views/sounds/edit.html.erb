@@ -1,4 +1,21 @@
-<h1>Sounds#edit</h1>
-<p>Find me in app/views/sounds/edit.html.erb</p>
+<body>
+    <header>
+      <%# -------ヘッダー部分------- %>
+      <%= render partial: "profiles/header", locals: { profile: @profile } %>
+    </header>
 
-<%= render partial: "form", locals: { profile: @profile, sound: @sound } %>
+    <nav id="dropdownMenu" class="dropdown-menu">
+      <%# -------メニュー部分------- %>
+      <%= render partial: "profiles/menu", locals: { profile: @profile, profiles: @profiles } %>
+    </nav>
+
+<main>
+  <section class="sound-new">
+    <h2>編集する</h2>
+
+    <%# _formへ切り出し %>
+    <%= render partial: "form", locals: { profile: @sound.profile, sound: @sound } %>
+
+  </section>
+</main>
+</body>
