@@ -1,9 +1,11 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_profiles
+  before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    @profiles = current_user.profiles.all
+    @profile = nil
   end
 
   def new
@@ -20,20 +22,21 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = Profile.find(params[:id])
+    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
   end
 
   def edit
-    @profile = Profile.find(params[:id])
   end
 
   def update
-    profile = Profile.find(params[:id])
-    profile.update(profile_params) 
+    if @profile.update(profile_params)
+      redirect_to profile_path(@profile.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    profile = Profile.find(params[:id])
     profile.destroy
   end
   
@@ -41,4 +44,13 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:image, :name, :text).merge(user_id: current_user.id)
   end
+
+  def set_profiles
+    @profiles = current_user.profiles.all
+  end
+
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+
 end

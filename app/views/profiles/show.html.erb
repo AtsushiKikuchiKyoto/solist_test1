@@ -1,10 +1,23 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<body>
+    <header>
 
-<%= image_tag @profile.image.variant(resize: '500x500') %>
-<%= @profile.name %>
-<%= @profile.text %>
+<%# -------ヘッダー部分------- %>
+<%= render partial: "header", locals: { profile: @profile } %>
 
-<%= link_to "演奏者情報の編集", edit_profile_path(@profile.id) %>
-<%= link_to "演奏者情報の削除", profile_path(@profile.id), data: {turbo_method: :delete} %>
-<%= link_to "演奏者のトップページ", profile_sounds_path(@profile.id) %>
+    </header>
+
+    <nav id="dropdownMenu" class="dropdown-menu">
+        <ul>
+
+<%# -------メニュー部分------- %>
+<%= render partial: "menu", locals: { profile: @profile, profiles: @profiles } %>
+
+        </ul>
+    </nav>
+
+    <main>
+<%# -------サウンド部分------- %>
+<%= render partial: "sounds/soundBox", locals: { sounds: @sounds } %>
+
+    </main>
+</body>

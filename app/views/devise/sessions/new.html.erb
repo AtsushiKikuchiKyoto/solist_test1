@@ -10,6 +10,12 @@
     <p>いつもありがとうございます！</p>
     <p><%= link_to '新規登録の方はこちら', new_user_registration_path %></p>
 
+    <%# ログイン時のエラーメッセージ  %>
+    <div class='login-flash-message'>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </div>
+
     <%= form_with model: @user, url: user_session_path, class: "user-form", local: true do |f| %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-form-field" %>
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "user-form-field" %>
