@@ -85,6 +85,42 @@ header {
 .dropdown-menu li a:hover {
   background-color: #555;
 }
+/* ---------ドロップダウンアバター--------- */
+
+.dropdown-avatar {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 150px;
+}
+
+.dropdown-avatar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-avatar li {
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-avatar li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-avatar li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.dropdown-avatar li a:hover {
+  background-color: #555;
+}
 
 /* ---------メイン--------- */
 
