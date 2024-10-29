@@ -17,13 +17,13 @@ body {
   background-blend-mode: overlay;
   background-color: rgba(244, 244, 244, 0.7); /* 透明度調整 */
 }
-/* ---------ヘッダー--------- */
+/* ----------------------------------------------ヘッダー */
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 30px 10px 30px;
+  padding: 10px 30px 10px 10px;
   background-color: #333;
   position: sticky;
   top: 0;
@@ -62,7 +62,7 @@ header {
   width: 40px;
   cursor: pointer;
 }
-/* ---------ドロップダウンメニューリスト--------- */
+/* -----------------------------------ドロップダウンメニューリスト */
 
 .dropdown-menu {
   display: none;
@@ -98,7 +98,7 @@ header {
 .dropdown-menu li a:hover {
   background-color: #555;
 }
-/* ---------ドロップダウンアバター--------- */
+/* ----------------------------------------ドロップダウンアバター */
 
 .dropdown-avatar {
   display: none;
@@ -135,14 +135,14 @@ header {
   background-color: #555;
 }
 
-/* ---------メイン--------- */
+/* -------------------------------------------------メイン */
 
 
 main {
   padding: 20px;
 }
 
-/* ----------サウンド部品---------- */
+/* -----------------------------------------------サウンド部品 */
 .sounds-box{
   width: 100%;
 }
@@ -193,7 +193,7 @@ main {
   justify-content: space-around;
 }
 
-/* ---------ログインサインアップ--------- */
+/* -------------------------------------------ログインサインアップ */
 .login-header{
   align-items: center;
   padding: 1rem;
@@ -234,7 +234,7 @@ main {
   border-color: #fff;
   color: white;
 }
-/* ---------プロフィールフォーム--------- */
+/* ---------------------------------------プロフィールフォーム */
 .profile-new{
   margin: 30px auto ;
   width: 400px;
@@ -270,7 +270,7 @@ main {
   background-color: grey;
   color: white;
 }
-/* ---------サウンドフォーム--------- */
+/* ------------------------------------------サウンドフォーム */
 .sound-new{
   margin: 30px auto ;
   width: 400px;
@@ -295,7 +295,7 @@ main {
 .sound-form-text{
   height: 60px;
 }
-/* ---------プロフィール部品--------- */
+/* -------------------------------------------プロフィール部品 */
 .profile-box{
   width: 400px;
   margin: 0 auto 30px;
@@ -337,7 +337,7 @@ main {
 .profile-margin{
   height: 150px;
 }
-/* ---------コメント部品--------- */
+/* ---------------------------------------------コメント部品 */
 .comment-hide{
   cursor: pointer;
 }
@@ -402,10 +402,10 @@ main {
   font-size: x-small;
   background-color: gray;
   color: white;
-  border-radius: 5%;
+  border-radius: 8%;
 }
 
-/* ---------エラー表示--------- */
+/* ----------------------------------------------エラー表示 */
 .error-alert{
   border: solid 1px gray;
   border-radius: 2px;
@@ -417,7 +417,7 @@ main {
   list-style: none;
   color: darkred;
 }
-/* ---------共通フォント--------- */
+/* ------------------------------------------共通フォント */
 
 .user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
@@ -426,9 +426,41 @@ main {
 /* リンクの下線削除 */
 a { color:#0000FF; text-decoration:none; }
 
-/* ---------マルチデバイス--------- */
+/* ---------------------------------マルチデバイス */
 @media (max-width: 600px) {
+  /* ----------------------------------ヘッダー */
   .header-center .logo {
       font-size: 30px;
+  }
+  /* ---------------------------サウンド部品 */
+  .sound-each{
+    width: 100%;
+  }
+  .audio{
+    height: 40px;
+    width: 100%;
+  }
+  .comment-box{
+    width: 100%;
+  }
+  .comment-text{
+    width: 90%;
+  }
+  .comment-delete{
+    width: 45px;
+    height: 20px;
+    margin-top: 20px;
+    font-size: small;
+  }
+  /* ---------------------------サウンドフォーム */
+  .sound-new{
+    width: 100%;
+  }
+  /* ---------------------------プロフィールフォーム */
+  .profile-new{
+    width: 100%;
+  }
+  .profile-form{
+    width: 100%;
   }
 }
