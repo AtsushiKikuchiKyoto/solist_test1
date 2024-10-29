@@ -23,24 +23,37 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 3rem;
+  padding: 10px 30px 10px 30px;
   background-color: #333;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.header-left .avatar {
-  width: 50px;
-  height: 50px;
+.header-left{
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
   border-radius: 10%;
+  margin-left: 17px;
+  cursor: pointer;
+}
+.avatar-name{
+  font-size: small;
+  color: white;
+  text-align: center;
 }
 
 .header-center .logo {
   font-family: "Arima", system-ui;
   font-weight: 500;
-  font-size: 1.9rem;
+  font-size: 40px;
   color: #fff;
+  width: 80px;
   text-align: center;
   text-decoration: none;
 }
@@ -85,6 +98,42 @@ header {
 .dropdown-menu li a:hover {
   background-color: #555;
 }
+/* ---------ドロップダウンアバター--------- */
+
+.dropdown-avatar {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 150px;
+}
+
+.dropdown-avatar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-avatar li {
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-avatar li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-avatar li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.dropdown-avatar li a:hover {
+  background-color: #555;
+}
 
 /* ---------メイン--------- */
 
@@ -99,27 +148,36 @@ main {
 }
 .sound-each{
   width: 400px;
-  margin: 0 auto 30px;
+  margin: 20px auto 10px;
   padding: 1rem;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .sound-top{
-  height: 70px;
+  height: 90px;
   display: flex;
   margin-bottom: 10px;
+}
+.sound-image-name{
+  width: 90px;
+  height: 90px;
 }
 .sound-profile{
   width: 70px;
   height: 70px;
   border-radius: 10%;
 }
+.sound-name{
+  width: 100%;
+  font-size: small;
+  text-align: center;
+}
 .sound-text{
   margin-left: 10px;
   padding: 4px;
   width: 100%;
-  height: 70px;
+  height: 90px;
   font-size: medium;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -279,6 +337,73 @@ main {
 .profile-margin{
   height: 150px;
 }
+/* ---------コメント部品--------- */
+.comment-hide{
+  cursor: pointer;
+}
+.comment-box{
+  width: 350px;
+  margin: 0 auto 30px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+.comment-top{
+  display: flex;
+  justify-content: space-between;
+}
+.comment-form-text,.comment-submit{
+  height: 40px;
+  width: 230px;
+  margin: 10px 10px 5px 0;
+  font-size: medium;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.comment-submit{
+  width: 70px;
+  background-color: gray;
+  color: white;
+}
+.comment-bottom{
+  display: flex;
+}
+.comment-avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+}
+.comment-right{
+  width: 100%;
+  margin-left: 5px;
+}
+.comment-name,.comment-text{
+  width: 50%;
+  height: 20px;
+  font-size: small;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+.comment-text{
+  width: 100%;
+  font-size: small;
+}
+.comment-delete{
+  width: 35px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  margin-top: 15px;
+  font-size: x-small;
+  background-color: gray;
+  color: white;
+  border-radius: 5%;
+}
 
 /* ---------エラー表示--------- */
 .error-alert{
@@ -294,9 +419,9 @@ main {
 }
 /* ---------共通フォント--------- */
 
-.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions{
+.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-  color: red;
+  /* color: red; */
 }
 /* リンクの下線削除 */
 a { color:#0000FF; text-decoration:none; }
@@ -304,6 +429,6 @@ a { color:#0000FF; text-decoration:none; }
 /* ---------マルチデバイス--------- */
 @media (max-width: 600px) {
   .header-center .logo {
-      font-size: 1.2rem;
+      font-size: 30px;
   }
 }

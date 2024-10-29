@@ -1,8 +1,9 @@
-<div class="header-left">
+<div class="header-left", id="avatar-icon">
   <% if profile and profile.id%>
-    <%= image_tag profile.image,class: "avatar" %>
+    <%= image_tag profile.image,class: "avatar",id: "avatar-icon" %>
+    <div class="avatar-name"><%= profile.name %></div>
   <% else %>
-    <%= image_tag "avatar.jpg",class: "avatar" %>
+    <%= image_tag "avatar.jpg",class: "avatar",id: "avatar-icon" %>
   <% end %>
 </div>
 <%= link_to(root_path, class: 'header-center') do %>

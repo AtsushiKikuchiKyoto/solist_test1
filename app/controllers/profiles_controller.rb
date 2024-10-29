@@ -23,6 +23,7 @@ class ProfilesController < ApplicationController
 
   def show
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
+    @comments = Comment.all.order('created_at DESC').includes(:profile, :sound)
   end
 
   def edit
