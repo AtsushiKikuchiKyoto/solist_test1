@@ -3,8 +3,12 @@ class CommentsController < ApplicationController
     Comment.create(comment_params)
   end
   def destroy
+    
+    # binding.pry
+    
     comment = Comment.find(params[:id])
     comment.destroy
+    redirect_to profile_path(params[:profile_id])
   end
   private
   def comment_params

@@ -1,8 +1,11 @@
 <div class="sounds-box">
-  <% sounds.each do |sound| %>
+  <% sounds.each_with_index do |sound, i| %>
     <div class="sound-each">
       <div class="sound-top">
-        <%= image_tag sound.profile.image.variant(resize: '100x100'), class: "sound-profile" %>
+        <div class="sound-image-name">
+          <%= image_tag sound.profile.image, class: "sound-profile" %>
+          <div class="sound-name"><%= sound.profile.name %></div>
+        </div>
         <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
       </div>
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
@@ -14,10 +17,21 @@
             <div><%= link_to "編集", edit_profile_sound_path(profile.id, sound.id) %></div>
             <div><%= link_to "削除", profile_sound_path(profile.id, sound.id), data: { turbo_method: :delete } %></div>
           <% end %>
+          <div class="comment-hide", id="sound_<%= i %>">コメント</div>
         </div>
       <% end %>
 
 
     </div>
+
+    <%# -------コメント部分------- %>
+    <% if profile and profile.id%>
+      <div class="comment-box", id="comment_<%= i %>">
+        <%= render partial: "sounds/commentBox", locals: { profile: profile, sound: sound, comments: comments } %>
+      </div>
+    <% end %>
+
   <% end %>
+
+
 </div>
