@@ -16,7 +16,7 @@
             <div><%= link_to "編集", edit_sound_path(sound.id) %></div>
             <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete } %></div>
           <% end %>
-          <div class="comment-hide", id="sound_<%= i %>">コメント</div>
+          <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
         </div>
 
     </div>
@@ -24,7 +24,7 @@
     <%# -------コメント部分------- %>
     <% if current_profile %>
       <div class="comment-box", id="comment_<%= i %>">
-        <%#= render partial: "sounds/commentBox", locals: { profile: profile, sound: sound, comments: comments } %>
+        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile } %>
       </div>
     <% end %>
 
