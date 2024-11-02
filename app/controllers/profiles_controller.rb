@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profiles
+  before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_profile, only: [:index, :new, :edit, :show]
+  before_action :set_sounds, only: [:index, :show]
+
 
   def index
-    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    @profile = nil
   end
 
   def new
@@ -15,6 +16,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
+      session[:current_profile_id] = @profile.id
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -22,8 +24,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    @comments = Comment.all.order('created_at DESC').includes(:profile, :sound)
   end
 
   def edit
@@ -31,14 +31,21 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile.id)
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    profile.destroy
+    @profile.destroy
+    session[:current_profile_id] = nil
+    redirect_to root_path
+  end
+
+  def switch
+    session[:current_profile_id] = params[:format]
+    redirect_to request.referer
   end
   
   private
@@ -52,6 +59,18 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def set_current_profile
+    if session[:current_profile_id] == nil
+      @current_profile = nil
+    else
+      @current_profile = Profile.find(session[:current_profile_id])
+    end
+  end
+
+  def set_sounds
+    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
   end
 
 end

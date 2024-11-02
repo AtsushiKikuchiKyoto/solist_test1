@@ -1,17 +1,19 @@
-  <%= form_with model: [ profile, sound, Comment.new ], local: true, class:"comment-top" do |f| %>
+  <%= form_with model: [ sound, Comment.new ], local: true, class:"comment-top" do |f| %>
     <%= f.text_area :text, placeholder: "コメントを入力できます", class: "comment-form-text" %>
     <%= f.submit "OK", class:"comment-submit" %>
   <% end %>
-  <% comments.where(sound_id: sound.id).each do |comment| %>
+  <% sound.comments.each do |comment| %>
     <div class="comment-bottom">
-      <%= image_tag comment.profile.image, class: "comment-avatar" %>
+      <%= link_to profile_path(comment.profile.id), class:"comment-left" do %>
+        <%= image_tag comment.profile.image, class: "comment-avatar" %>
+        <div class="comment-name"><%= comment.profile.name %></div>
+      <% end %>
       <div class="comment-right">
-        <textarea class="comment-name"><%= comment.profile.name %></textarea>
         <textarea class="comment-text"><%= comment.text %></textarea>
       </div>
 
-      <% if profile.id == comment.profile.id %>
-        <%= link_to "削除", profile_sound_comment_path(comment.profile.id, comment.sound.id, comment.id), data: { turbo_method: :delete }, class: "comment-delete" %>
+      <% if current_profile.id == comment.profile.id %>
+        <%= link_to "削除", sound_comment_path(sound.id, comment.id), data: { turbo_method: :delete }, class: "comment-delete" %>
       <% end %>
     </div>
   <% end %>

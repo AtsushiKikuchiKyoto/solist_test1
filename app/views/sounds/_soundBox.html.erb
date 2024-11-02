@@ -2,32 +2,29 @@
   <% sounds.each_with_index do |sound, i| %>
     <div class="sound-each">
       <div class="sound-top">
-        <div class="sound-image-name">
+        <%= link_to profile_path(sound.profile.id), class:"sound-image-name" do %>
           <%= image_tag sound.profile.image, class: "sound-profile" %>
           <div class="sound-name"><%= sound.profile.name %></div>
-        </div>
+        <% end %>
         <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
       </div>
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
 
-      <% if profile and profile.id%>
         <div class="sound-actions">
-          <div><%= link_to "詳細", profile_sound_path(profile.id, sound.id) %></div>
+          <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text" %></div>
           <% if sound.profile.user.id == current_user.id%>
-            <div><%= link_to "編集", edit_profile_sound_path(profile.id, sound.id) %></div>
-            <div><%= link_to "削除", profile_sound_path(profile.id, sound.id), data: { turbo_method: :delete } %></div>
+            <div><%= link_to "編集", edit_sound_path(sound.id), class:"sound-actions-text" %></div>
+            <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete }, class:"sound-actions-text" %></div>
           <% end %>
-          <div class="comment-hide", id="sound_<%= i %>">コメント</div>
+          <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
         </div>
-      <% end %>
-
 
     </div>
 
     <%# -------コメント部分------- %>
-    <% if profile and profile.id%>
+    <% if current_profile %>
       <div class="comment-box", id="comment_<%= i %>">
-        <%= render partial: "sounds/commentBox", locals: { profile: profile, sound: sound, comments: comments } %>
+        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile } %>
       </div>
     <% end %>
 
