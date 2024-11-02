@@ -1,8 +1,8 @@
 class SoundsController < ApplicationController
-  before_action :set_profiles, only:[:new]
+  before_action :set_profiles, only:[:new, :edit, :update]
   before_action :set_profile, only:[]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:new, :edit,]
+  before_action :set_current_profile, only: [:new, :edit, :update]
 
   def new
     @sound = Sound.new
@@ -27,7 +27,7 @@ class SoundsController < ApplicationController
 
   def update
     if @sound.update(sound_params)
-      redirect_to profile_sound_path(params[:profile_id], params[:id])
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end

@@ -172,6 +172,7 @@ main {
   width: 100%;
   font-size: small;
   text-align: center;
+  color: black;
 }
 .sound-text{
   margin-left: 10px;
