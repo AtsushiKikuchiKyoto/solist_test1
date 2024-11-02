@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:index, :new, :edit]
+  before_action :set_current_profile, only: [:index, :new, :edit, :show]
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
@@ -24,8 +24,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    @comments = Comment.all.order('created_at DESC').includes(:profile, :sound)
+    @sounds = @profile.sounds.all.order('created_at DESC').includes(:comments)
+    # @comments = Comment.all.order('created_at DESC').includes(:profile, :sound)
   end
 
   def edit

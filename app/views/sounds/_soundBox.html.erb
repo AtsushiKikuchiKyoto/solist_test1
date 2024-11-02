@@ -10,17 +10,14 @@
       </div>
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
 
-      <% if current_profile%>
         <div class="sound-actions">
-          <div><%= link_to "詳細", profile_sound_path(current_profile.id, sound.id) %></div>
+          <div><%= link_to "詳細", profile_path(sound.profile.id) %></div>
           <% if sound.profile.user.id == current_user.id%>
-            <div><%= link_to "編集", edit_profile_sound_path(current_profile.id, sound.id) %></div>
-            <div><%= link_to "削除", profile_sound_path(current_profile.id, sound.id), data: { turbo_method: :delete } %></div>
+            <div><%#= link_to "編集", edit_profile_sound_path(current_profile.id, sound.id) %></div>
+            <div><%#= link_to "削除", profile_sound_path(current_profile.id, sound.id), data: { turbo_method: :delete } %></div>
           <% end %>
           <div class="comment-hide", id="sound_<%= i %>">コメント</div>
         </div>
-      <% end %>
-
 
     </div>
 
