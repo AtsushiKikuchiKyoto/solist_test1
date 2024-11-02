@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-
   end
 
   def new

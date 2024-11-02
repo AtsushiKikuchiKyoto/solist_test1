@@ -1,8 +1,8 @@
 class SoundsController < ApplicationController
-  before_action :set_profiles
-  before_action :set_profile
+  before_action :set_profiles, only:[:new]
+  before_action :set_profile, only:[]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_current_profile, only: [:new, :edit,]
 
   def new
     @sound = Sound.new
@@ -11,7 +11,7 @@ class SoundsController < ApplicationController
   def create
     @sound = Sound.new(sound_params)
     if @sound.save
-      redirect_to profile_path(params[:profile_id])
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,6 +49,14 @@ class SoundsController < ApplicationController
 
   def set_profile
     @profile = Profile.find(params[:profile_id])
+  end
+
+  def set_current_profile
+    if session[:current_profile_id] == nil
+      @current_profile = nil
+    else
+      @current_profile = Profile.find(session[:current_profile_id])
+    end
   end
 
   def set_sound
