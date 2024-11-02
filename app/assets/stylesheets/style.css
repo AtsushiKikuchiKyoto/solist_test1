@@ -193,6 +193,9 @@ main {
   display: flex;
   justify-content: space-around;
 }
+.sound-actions-text{
+  color: black;
+}
 
 /* -------------------------------------------ログインサインアップ */
 .login-header{
@@ -374,25 +377,33 @@ main {
 .comment-bottom{
   display: flex;
 }
+.comment-left{
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+}
 .comment-avatar{
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
+  margin: 0 auto;
   border-radius: 10%;
+}
+.comment-name{
+  margin: 0 auto;
+  font-size: xx-small;
+  color: black;
 }
 .comment-right{
   width: 100%;
   margin-left: 5px;
 }
-.comment-name,.comment-text{
-  width: 50%;
-  height: 20px;
+.comment-text{
+  width: 90%;
+  height: 40px;
+  line-height: 40px;
   font-size: small;
   border: none;
   border-bottom: 1px solid gray;
-}
-.comment-text{
-  width: 100%;
-  font-size: small;
 }
 .comment-delete{
   width: 35px;
@@ -420,7 +431,7 @@ main {
 }
 /* ------------------------------------------共通フォント */
 
-.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name{
+.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   /* color: red; */
 }
