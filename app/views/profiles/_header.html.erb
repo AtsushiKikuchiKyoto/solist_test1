@@ -1,7 +1,7 @@
 <div class="header-left", id="avatar-icon">
-  <% if profile and profile.id%>
-    <%= image_tag profile.image,class: "avatar",id: "avatar-icon" %>
-    <div class="avatar-name"><%= profile.name %></div>
+  <% if current_profile %>
+    <%= image_tag current_profile.image,class: "avatar",id: "avatar-icon" %>
+    <div class="avatar-name"><%= current_profile.name %></div>
   <% else %>
     <%= image_tag "avatar.jpg",class: "avatar",id: "avatar-icon" %>
   <% end %>

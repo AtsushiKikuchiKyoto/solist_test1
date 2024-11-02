@@ -1,11 +1,15 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profiles
+  before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    @profile = nil
+    if session[:current_profile_id] == nil
+      @current_profile = nil
+    else
+      @current_profile = Profile.find(session[:current_profile_id])
+    end
   end
 
   def new
@@ -39,6 +43,11 @@ class ProfilesController < ApplicationController
 
   def destroy
     profile.destroy
+  end
+
+  def switch
+    session[:current_profile_id] = params[:format]
+    redirect_to request.referer
   end
   
   private

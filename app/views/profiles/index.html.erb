@@ -1,25 +1,25 @@
 <body>
     <header>
         <%# -------ヘッダー部分------- %>
-        <%= render partial: "header", locals: { profile: @profile } %>
+        <%= render partial: "header", locals: { current_profile: @current_profile } %>
     </header>
 
     <nav id="dropdownAvatar" class="dropdown-avatar">
       <ul>
         <%# -------アバター部分------- %>
-        <%= render partial: "avatar", locals: { profile: @profile, profiles: @profiles } %>
+        <%= render partial: "avatar", locals: { current_profile: @current_profile, profiles: @profiles } %>
       </ul>
     </nav>
 
     <nav id="dropdownMenu" class="dropdown-menu">
       <ul>
         <%# -------メニュー部分------- %>
-        <%= render partial: "menu", locals: { profile: @profile, profiles: @profiles } %>
+        <%= render partial: "menu", locals: { current_profile: @current_profile, profiles: @profiles } %>
       </ul>
     </nav>
 
     <main>
         <%# -------サウンド部分------- %>
-        <%= render partial: "sounds/soundBox", locals: { profile: @profile, sounds: @sounds } %>
+        <%= render partial: "sounds/soundBox", locals: { current_profile: @current_profile, sounds: @sounds } %>
     </main>
 </body>
