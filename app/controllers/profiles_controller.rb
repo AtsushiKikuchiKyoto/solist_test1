@@ -2,18 +2,15 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_profile, only: [:index, :new]
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
-    if session[:current_profile_id] == nil
-      @current_profile = nil
-    else
-      @current_profile = Profile.find(session[:current_profile_id])
-    end
+
   end
 
   def new
-    @profile = Profile.new
+    @new_profile = Profile.new
   end
   
   def create
@@ -61,6 +58,14 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def set_current_profile
+    if session[:current_profile_id] == nil
+      @current_profile = nil
+    else
+      @current_profile = Profile.find(session[:current_profile_id])
+    end
   end
 
 end
