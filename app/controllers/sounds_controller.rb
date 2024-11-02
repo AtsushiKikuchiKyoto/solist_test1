@@ -35,7 +35,7 @@ class SoundsController < ApplicationController
 
   def destroy
     @sound.destroy
-    redirect_to profile_sound_path(params[:profile_id], params[:id])
+    redirect_to root_path
   end
 
   private
