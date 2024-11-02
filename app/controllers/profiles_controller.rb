@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
+      session[:current_profile_id] = @profile.id
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -39,7 +40,9 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    profile.destroy
+    @profile.destroy
+    session[:current_profile_id] = nil
+    redirect_to root_path
   end
 
   def switch
