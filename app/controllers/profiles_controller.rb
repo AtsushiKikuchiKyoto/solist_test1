@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:index, :new]
+  before_action :set_current_profile, only: [:index, :new, :edit]
 
   def index
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile.id)
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end
