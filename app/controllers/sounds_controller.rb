@@ -18,10 +18,6 @@ class SoundsController < ApplicationController
 
   end
 
-  def show
-    @comments = Comment.all.order('created_at DESC').includes(:profile, :sound)
-  end
-
   def edit
   end
 

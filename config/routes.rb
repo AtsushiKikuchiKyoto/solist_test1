@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "profiles#index"
   get 'profiles/switch'
   resources :profiles
-  resources :sounds do
+  resources :sounds, only: [:new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
   end
 end
