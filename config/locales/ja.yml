@@ -13,3 +13,9 @@ ja:
        sound:
          text: タイトル・説明文
          sound: 音声ファイル
+    models:
+      comment: コメント
+    attributes:
+       comment:
+         text: コメント
+         profile: プロフィール
