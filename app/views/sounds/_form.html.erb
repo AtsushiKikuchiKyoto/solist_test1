@@ -1,4 +1,3 @@
-<%#= form_with model: [current_profile, sound], local: true do |f| %>
 <%= form_with model: sound, local: true do |f| %>
   <p>音声ファイル(0000Mb以下)</p>
   <%= f.file_field :sound, class: "sound-form-file" %>

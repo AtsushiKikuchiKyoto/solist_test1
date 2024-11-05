@@ -6,4 +6,10 @@ ja:
        profile:
          name: 名前
          text: 紹介文
-         image: アバター画像 
+         image: アバター画像
+    models:
+      sound: サウンド
+    attributes:
+       sound:
+         text: タイトル・説明文
+         sound: 音声ファイル
