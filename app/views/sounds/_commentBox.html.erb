@@ -1,6 +1,6 @@
   <%= form_with model: [ sound, Comment.new ], local: true, class:"comment-top" do |f| %>
-    <%= f.text_area :text, placeholder: "コメントを入力できます", class: "comment-form-text" %>
-    <%= f.submit "OK", class:"comment-submit" %>
+    <%= f.text_area :text, placeholder: "コメントを入力できます", class: "comment-form-text", id: "text" %>
+    <%= f.submit "OK", class:"comment-submit", id: "submit" %>
   <% end %>
   <% sound.comments.each do |comment| %>
     <div class="comment-bottom">
