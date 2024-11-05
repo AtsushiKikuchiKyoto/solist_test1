@@ -2,20 +2,17 @@ ja:
   activerecord:
     models:
       profile: プロフィール
+      sound: サウンド
+      comment: コメント
     attributes:
        profile:
          name: 名前
          text: 紹介文
          image: アバター画像
-    models:
-      sound: サウンド
-    attributes:
        sound:
          text: タイトル・説明文
          sound: 音声ファイル
-    models:
-      comment: コメント
-    attributes:
+         profile: プロフィール
        comment:
          text: コメント
          profile: プロフィール

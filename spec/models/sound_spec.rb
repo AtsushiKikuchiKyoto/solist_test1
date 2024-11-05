@@ -27,6 +27,11 @@ RSpec.describe Sound, type: :model do
         @sound.valid?
         expect(@sound.errors.full_messages).to include "音声ファイルのContent Typeが不正です"
       end
+      it 'profileが選択されていない' do
+        @sound.profile = nil
+        @sound.valid?
+        expect(@sound.errors.full_messages).to include "プロフィールを入力してください"
+      end
     end
   end
 
