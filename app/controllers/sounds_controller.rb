@@ -1,8 +1,8 @@
 class SoundsController < ApplicationController
-  before_action :set_profiles, only:[:new, :edit, :update]
+  before_action :set_profiles, only:[:new, :create, :edit, :update]
   before_action :set_profile, only:[]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:new, :edit, :update]
+  before_action :set_current_profile, only: [:new, :create, :edit, :update]
 
   def new
     @sound = Sound.new

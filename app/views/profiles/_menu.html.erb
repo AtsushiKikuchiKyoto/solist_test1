@@ -1,5 +1,5 @@
   <% if current_profile %>
-    <li><%= link_to "サウンドの新規投稿", new_sound_path %></li>
+    <li><%= link_to "サウンドの新規投稿", new_sound_path, id: "newSound" %></li>
   <% end %>
 
 <li><%= link_to "新規プロフィール作成", new_profile_path, id: "newProfile" %></li>
