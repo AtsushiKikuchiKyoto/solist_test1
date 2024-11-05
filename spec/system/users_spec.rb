@@ -4,6 +4,8 @@ RSpec.describe "Users", type: :system do
   before do
     @user = FactoryBot.build(:user)
     @user2 = FactoryBot.create(:user)
+    driven_by(:selenium_chrome_headless)
+    # driven_by(:selenium_chrome)
   end
   describe "システムテスト" do
     context "user登録できるとき" do

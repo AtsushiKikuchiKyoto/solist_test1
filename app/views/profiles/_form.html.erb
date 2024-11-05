@@ -1,13 +1,13 @@
 <%= form_with model: profile, local: true do |f| %>
   <p>画像ファイル(500kb以下)</p>
-  <%= f.file_field :image, class: "profile-form-file" %>
+  <%= f.file_field :image, class: "profile-form-file", id: "image" %>
 
 <%# --------エラーメッセージ--------- %>
 <%= render 'layouts/error', model: f.object %>
 
   <p>名前(必須)</p>
-  <%= f.text_field :name, class: "profile-form-name" %>
+  <%= f.text_field :name, class: "profile-form-name", id: "name" %>
   <p>紹介文(必須)</p>
-  <%= f.text_field :text, class: "profile-form-text" %>
-  <%= f.submit "OK", class: "profile-form-submit" %>
+  <%= f.text_field :text, class: "profile-form-text", id: "text" %>
+  <%= f.submit "OK", class: "profile-form-submit", id: "submit" %>
 <% end %>
