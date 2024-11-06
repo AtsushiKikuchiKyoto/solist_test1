@@ -73,6 +73,8 @@ header {
   border-radius: 8px;
   overflow: hidden;
   width: 150px;
+    /* 重なり調整 */
+    z-index: 100; 
 }
 
 .dropdown-menu ul {
@@ -187,6 +189,8 @@ main {
 .audio{
   height: 40px;
   width: 360px;
+  /* 重なり調整 */
+  z-index: 1; 
 }
 .sound-actions{
   margin-top: 7px;
