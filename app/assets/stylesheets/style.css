@@ -91,7 +91,6 @@ header {
 }
 
 .dropdown-menu li a {
-  color: #fff;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -127,7 +126,6 @@ header {
 }
 
 .dropdown-avatar li a {
-  color: #fff;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -442,6 +440,12 @@ main {
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   /* color: red; */
 }
+.menu-li,.avatar-li{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  color: #fff;
+  /* color: red; */
+}
+
 /* リンクの下線削除 */
 a { color:#0000FF; text-decoration:none; }
 
