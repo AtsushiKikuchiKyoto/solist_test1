@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:index, :new, :edit, :show]
-  before_action :set_sounds, only: [:index, :show]
+  before_action :set_sounds, only: [:index]
 
 
   def index
@@ -24,6 +24,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @sounds = Sound.where(profile_id: params[:id]).order('created_at DESC').includes(:profile, comments: :profile)
   end
 
   def edit

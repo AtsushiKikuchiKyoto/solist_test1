@@ -73,6 +73,8 @@ header {
   border-radius: 8px;
   overflow: hidden;
   width: 150px;
+    /* 重なり調整 */
+    z-index: 100; 
 }
 
 .dropdown-menu ul {
@@ -89,7 +91,6 @@ header {
 }
 
 .dropdown-menu li a {
-  color: #fff;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -125,7 +126,6 @@ header {
 }
 
 .dropdown-avatar li a {
-  color: #fff;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -187,6 +187,8 @@ main {
 .audio{
   height: 40px;
   width: 360px;
+  /* 重なり調整 */
+  z-index: 1; 
 }
 .sound-actions{
   margin-top: 7px;
@@ -203,6 +205,9 @@ main {
   padding: 1rem;
   background-color: #333;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .user-login,.user-signup{
   width: 100%;
@@ -435,6 +440,12 @@ main {
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   /* color: red; */
 }
+.menu-li,.avatar-li{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  color: #fff;
+  /* color: red; */
+}
+
 /* リンクの下線削除 */
 a { color:#0000FF; text-decoration:none; }
 

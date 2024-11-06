@@ -2,21 +2,22 @@
     <header>
         <%# -------ヘッダー部分------- %>
         <%= render partial: "profiles/header", locals: { current_profile: @current_profile } %>
+
+        <nav id="dropdownAvatar" class="dropdown-avatar">
+          <ul>
+            <%# -------アバター部分------- %>
+            <%= render partial: "profiles/avatar", locals: { current_profile: @current_profile, profiles: @profiles } %>
+          </ul>
+        </nav>
+
+        <nav id="dropdownMenu" class="dropdown-menu">
+          <ul>
+            <%# -------メニュー部分------- %>
+            <%= render partial: "profiles/menu", locals: { current_profile: @current_profile, profiles: @profiles } %>
+          </ul>
+        </nav>
+
     </header>
-
-    <nav id="dropdownAvatar" class="dropdown-avatar">
-      <ul>
-        <%# -------アバター部分------- %>
-        <%= render partial: "profiles/avatar", locals: { current_profile: @current_profile, profiles: @profiles } %>
-      </ul>
-    </nav>
-
-    <nav id="dropdownMenu" class="dropdown-menu">
-      <ul>
-        <%# -------メニュー部分------- %>
-        <%= render partial: "profiles/menu", locals: { current_profile: @current_profile, profiles: @profiles } %>
-      </ul>
-    </nav>
 
 <main>
   <section class="sound-new">

@@ -3,16 +3,17 @@ function avatar (){
   const avatarIcon = document.getElementById("avatar-icon");
   const avatar = document.getElementById("dropdownAvatar");
   
-  avatarIcon.addEventListener("click",()=>{
+  // load,render二重起動の阻止
+  if (!avatarIcon.hasAttribute('data-listener-added')) {
 
-    if (avatar.getAttribute("style") == "display:block;") {
-      avatar.setAttribute("style", "display:none;")
-    } else {
-      avatar.setAttribute("style", "display:block;")
-    }
+    avatarIcon.addEventListener("click",()=>{
+      avatar.style.display = avatar.style.display === "block" ? "none" : "block";
+    });
 
-  });
+  // load,render二重起動の阻止
+  avatarIcon.setAttribute('data-listener-added', 'true');
+  };
 
 };
  window.addEventListener('turbo:load', avatar);
-//  window.addEventListener('turbo:render', avatar);
+ window.addEventListener('turbo:render', avatar);

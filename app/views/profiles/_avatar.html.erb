@@ -1,4 +1,4 @@
-<li><%= link_to "プロフィール一覧", "#" %></li>
+<li><%= link_to "プロフィール一覧", "#", class:"avatar-li" %></li>
 <% profiles.each_with_index do |profile, i| %>
-  <li><%= link_to "#{i+1} - #{profile.name}", profiles_switch_path(profile.id) %></li>
+  <li><%= link_to "#{i+1} - #{profile.name}", profiles_switch_path(profile.id), class:"avatar-li" %></li>
 <% end %>
