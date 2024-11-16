@@ -13,7 +13,7 @@
       </div>
 
       <% if current_profile.id == comment.profile.id %>
-        <%= link_to "削除", sound_comment_path(sound.id, comment.id), data: { turbo_method: :delete }, class: "comment-delete" %>
+        <%= link_to "削除", sound_comment_path(sound.id, comment.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class: "comment-delete" %>
       <% end %>
     </div>
   <% end %>

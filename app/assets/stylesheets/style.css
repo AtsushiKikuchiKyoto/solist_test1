@@ -62,6 +62,22 @@ header {
   width: 40px;
   cursor: pointer;
 }
+.alert{
+  width: 100%;
+  font-size: small;
+  text-align: center;
+  padding: 1rem;
+  background-color: white;
+}
+.alert-info{
+  background-color: white;
+}
+.alert-success{
+  background-color: rgb(147, 205, 147);
+}
+.alert-danger{
+  background-color: rgb(250, 160, 160);
+}
 /* -----------------------------------ドロップダウンメニューリスト */
 
 .dropdown-menu {
@@ -436,7 +452,7 @@ main {
 }
 /* ------------------------------------------共通フォント */
 
-.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name{
+.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name,.alert{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   /* color: red; */
 }

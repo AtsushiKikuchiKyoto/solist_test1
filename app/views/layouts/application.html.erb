@@ -13,6 +13,8 @@
   </head>
   <body>
 
+    <%= render partial: "layouts/header", locals: { current_profile: @current_profile, profiles: @profiles } %>
+
     <%= yield %>
     
   </body>
