@@ -89,6 +89,7 @@ RSpec.describe "Sounds", type: :system do
         expect(page).to have_current_path(root_path)
         expect{ 
           click_on "deleteSound"
+          page.accept_confirm
           sleep 1
          }.to change { Sound.count }.by(-1)
         expect(page).to have_current_path(root_path)

@@ -93,6 +93,7 @@ RSpec.describe "Profiles", type: :system do
         expect(page).to have_content('プロフィールの削除')
         expect{ 
           click_on 'deleteProfile'
+          page.accept_confirm
           sleep 1
          }.to change { Profile.count }.by(-1)
         expect(page).to have_current_path(root_path)
