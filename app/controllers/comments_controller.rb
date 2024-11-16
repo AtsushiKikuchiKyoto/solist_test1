@@ -2,11 +2,13 @@ class CommentsController < ApplicationController
 
   def create
     Comment.create(comment_params)
+    flash[:success] = "コメントをしました。"
     redirect_to request.referer
   end
 
   def destroy
     comment = Comment.find(params[:id])
+    flash[:info] = "コメントを削除しました。"
     comment.destroy
     redirect_to request.referer
   end
