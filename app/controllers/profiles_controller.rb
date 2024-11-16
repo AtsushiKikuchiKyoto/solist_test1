@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:index, :new, :edit, :show]
@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     if @profile.save
       session[:current_profile_id] = @profile.id
+      flash[:success] = "プロフィールが作成されました。アバターアイコンから選択可能です。"
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -32,6 +33,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
+      flash[:success] = "プロフィールを編集しました。"
       redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
@@ -41,11 +43,13 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     session[:current_profile_id] = nil
+    flash[:info] = "プロフィールが削除されました。"
     redirect_to root_path
   end
 
   def switch
     session[:current_profile_id] = params[:format]
+    flash[:success] = "プロフィールを切り替えました。"
     redirect_to request.referer
   end
   
@@ -55,7 +59,7 @@ class ProfilesController < ApplicationController
   end
 
   def set_profiles
-    @profiles = current_user.profiles.all
+    @profiles = current_user.profiles.all if user_signed_in?
   end
 
   def set_profile
