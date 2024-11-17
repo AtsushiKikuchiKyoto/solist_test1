@@ -12,9 +12,9 @@
 
         <div class="sound-actions">
           <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
-          <% if sound.profile.user.id == current_user.id%>
+          <% if user_signed_in? && sound.profile.user.id == current_user.id%>
             <div><%= link_to "編集", edit_sound_path(sound.id), class:"sound-actions-text", id:"editSound" %></div>
-            <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete }, class:"sound-actions-text", id:"deleteSound" %></div>
+            <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
           <% end %>
           <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
         </div>

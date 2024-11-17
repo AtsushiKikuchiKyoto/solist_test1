@@ -1,14 +1,6 @@
-<div class="login-header">
-    <div class="header-center">
-        <h1 class="logo">Solist</h1>
-    </div>
-</div>
-
 <main>
   <section class="user-signup" id="devise">
     <h2>新規登録画面</h2>
-    <p><%= link_to '登録済みの方はこちら', new_user_session_path %></p>
-
     <%# 新規登録時のエラーメッセージ  %>
     <div>
       <% if resource.errors.any? %>

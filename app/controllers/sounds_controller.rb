@@ -11,6 +11,7 @@ class SoundsController < ApplicationController
   def create
     @sound = Sound.new(sound_params)
     if @sound.save
+      flash[:success] = "サウンドを作成しました。"
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -23,6 +24,7 @@ class SoundsController < ApplicationController
 
   def update
     if @sound.update(sound_params)
+      flash[:success] = "サウンドを編集しました。"
       redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
@@ -31,6 +33,7 @@ class SoundsController < ApplicationController
 
   def destroy
     @sound.destroy
+    flash[:info] = "サウンドを削除しました。"
     redirect_to root_path
   end
 
