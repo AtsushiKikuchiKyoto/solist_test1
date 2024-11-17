@@ -62,12 +62,17 @@ header {
   width: 40px;
   cursor: pointer;
 }
+/* ----------------------------------------------アラート */
+
 .alert{
   width: 100%;
   font-size: small;
   text-align: center;
   padding: 1rem;
   background-color: white;
+  position: sticky;
+  top: 80px;
+  z-index: 50; 
 }
 .alert-info{
   background-color: white;
@@ -419,15 +424,14 @@ main {
   margin-left: 5px;
 }
 .comment-text{
-  width: 90%;
+  width: 100%;
   height: 40px;
   line-height: 40px;
   font-size: small;
   border: none;
-  border-bottom: 1px solid gray;
 }
 .comment-delete{
-  width: 35px;
+  width: 45px;
   height: 20px;
   text-align: center;
   line-height: 20px;
