@@ -1,0 +1,9 @@
+<%= turbo_stream.update "comments-each" do %>
+  <%= render partial: "sounds/comments_each", locals: { sound: @sound, current_profile: @current_profile } %>
+<% end %>
+
+<%= turbo_stream.update "alert" do %>
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+<% end %>
