@@ -8,7 +8,7 @@
         <% end %>
         <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
       </div>
-      <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
+      <%= audio_tag url_for(sound.sound), controls: true, class: "audio", id: "audio_#{i}" %>
 
         <div class="sound-actions">
           <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
@@ -24,11 +24,13 @@
     <%# -------コメント部分------- %>
     <% if current_profile %>
       <div class="comment-box", id="comment_<%= i %>">
-        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile } %>
+        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile, i:i} %>
       </div>
     <% end %>
 
   <% end %>
 
-
+</div>
+<div class="play grayscale">
+  <%= image_tag "play.svg", class: "play-icon", id: "play-button" %>
 </div>
