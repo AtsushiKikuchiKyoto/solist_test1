@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    @i = params[:index]
     flash[:info] = "コメントを削除しました。"
     comment.destroy
     respond_to do |format|

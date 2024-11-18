@@ -1,5 +1,5 @@
-<%= turbo_stream.update "comments-each" do %>
-  <%= render partial: "sounds/comments_each", locals: { sound: @sound, current_profile: @current_profile } %>
+<%= turbo_stream.update "comment_#{@i}" do %>
+    <%= render partial: "sounds/commentBox", locals: { sound: @sound, current_profile: @current_profile, i:@i } %>
 <% end %>
 
 <%= turbo_stream.update "alert" do %>
