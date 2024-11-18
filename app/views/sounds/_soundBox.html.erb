@@ -8,7 +8,7 @@
         <% end %>
         <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
       </div>
-      <%= audio_tag url_for(sound.sound), controls: true, class: "audio" %>
+      <%= audio_tag url_for(sound.sound), controls: true, class: "audio", id: "audio_#{i}" %>
 
         <div class="sound-actions">
           <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
@@ -31,6 +31,6 @@
   <% end %>
 
 </div>
-<div class="play">
-  <%= image_tag "play.svg", class: "play-icon" %>
+<div class="play grayscale">
+  <%= image_tag "play.svg", class: "play-icon", id: "play-button" %>
 </div>
