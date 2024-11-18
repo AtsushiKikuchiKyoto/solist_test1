@@ -48,13 +48,11 @@ RSpec.describe "Comments", type: :system do
         click_on 'submit'
         sleep 1
         expect(page).to have_current_path(root_path)
-        first('.comment-hide').click
         expect(page).to have_content('bbbbbb')
         find('.comment-delete').click
         page.accept_confirm
         sleep 1
         expect(page).to have_current_path(root_path)
-        first('.comment-hide').click
         expect(page).to have_no_content('bbbbbb')
       end
     end
