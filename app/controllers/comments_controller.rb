@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     Comment.create(comment_params)
+    @i = params[:comment][:comment_index]
     flash[:success] = "コメントをしました。"
     respond_to do |format|
       format.turbo_stream #Rail search 'create.turbo_stream.erb'

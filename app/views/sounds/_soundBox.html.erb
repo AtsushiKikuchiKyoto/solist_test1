@@ -24,7 +24,7 @@
     <%# -------コメント部分------- %>
     <% if current_profile %>
       <div class="comment-box", id="comment_<%= i %>">
-        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile } %>
+        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile, i:i} %>
       </div>
     <% end %>
 
