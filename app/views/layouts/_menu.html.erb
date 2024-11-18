@@ -10,4 +10,6 @@
   <li><%= link_to "現在のプロフィールの削除", profile_path(current_profile.id), data: {turbo_method: :delete, turbo_confirm: "削除しますか?" }, id: "deleteProfile", class: "menu-li" %></li>
 <% end %>
 
+<li><%= link_to "リンクス", links_url, id: "toLinks", class: "menu-li" %></li>
+
 <li><%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete}, class: "menu-li" %></li>
