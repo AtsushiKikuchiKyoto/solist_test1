@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:index, :new, :edit, :show, :switch]
+  before_action :set_current_profile, only: [:index, :new, :edit, :show]
+  before_action :switch_current_profile, only: [:switch]
   before_action :set_sounds, only: [:index]
 
 
@@ -65,12 +66,14 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
+  def switch_current_profile
+    session[:current_profile_id] = params[:format]
+    @current_profile = Profile.find(params[:format])
+  end
+
   def set_current_profile
     if session[:current_profile_id] == nil
       @current_profile = nil
-    elsif params[:format]
-      session[:current_profile_id] = params[:format]
-      @current_profile = Profile.find(params[:format])
     else
       @current_profile = Profile.find(session[:current_profile_id])
     end

@@ -1,6 +1,5 @@
 class SoundsController < ApplicationController
   before_action :set_profiles, only:[:new, :create, :edit, :update]
-  before_action :set_profile, only:[]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:new, :create, :edit, :update]
 
@@ -44,10 +43,6 @@ class SoundsController < ApplicationController
 
   def set_profiles
     @profiles = current_user.profiles.all
-  end
-
-  def set_profile
-    @profile = Profile.find(params[:profile_id])
   end
 
   def set_current_profile
