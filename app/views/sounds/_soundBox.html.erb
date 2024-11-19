@@ -11,13 +11,22 @@
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio", id: "audio_#{i}" %>
 
         <div class="sound-actions">
-          <% if user_signed_in? && sound.profile.user.id == current_user.id%>
-            <div><%= link_to "編集", edit_sound_path(sound.id), class:"sound-actions-text", id:"editSound" %></div>
-            <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
-          <% end %>
           <% if user_signed_in? %>
-            <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
-            <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
+
+            <% if current_profile && sound.profile.id == current_profile.id%>
+              <div><%= link_to "編集", edit_sound_path(sound.id), class:"sound-actions-text", id:"editSound" %></div>
+            <% end %>
+
+            <% if sound.profile.user.id == current_user.id%>
+              <div><%= link_to "削除", sound_path(sound.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
+            <% end %>
+
+              <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
+
+            <% if current_profile %>
+              <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
+            <% end %>
+
           <% end %>
         </div>
 
@@ -32,6 +41,7 @@
 
   <% end %>
 
+    <%# -------プレイボタン部分------- %>
 </div>
 <div class="play grayscale">
   <%= image_tag "play.svg", class: "play-icon", id: "play-button" %>
