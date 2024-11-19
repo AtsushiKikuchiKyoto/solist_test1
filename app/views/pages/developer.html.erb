@@ -1,0 +1,31 @@
+<main>
+  <div class="pages-main">
+    <h1 class="pages-title">開発者の自己紹介</h1>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">プログラマー経歴</h3>
+      <P class="pages-text">
+      </br>1987年高知県高知市生まれ
+      </br></br>3~18歳までピアノを習う</br>32歳からピアノを再開
+      </br></br>2024年秋,TeckCamp短期集中10週間コースでプログラミングをスタート</br>習得したRuby on Rails の卒業制作として本アプリを作成
+      </br></br>18歳から京都在住</P>
+    </div>
+
+    <%= image_tag "pages/temple.jpg", class:"pages-photo"  %>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">Solist テクノロジー</h3>
+      <P class="pages-text">
+      </br>Ruby on Rails 7.0.0
+      </br>AWS EC2
+      </br></br>コードリンク</P>
+      <%= link_to "GitHup / AtsushiKikuchiKyoto ", "https://github.com/AtsushiKikuchiKyoto/solist_test1",class:"pages-text" %>
+    </div>
+
+    <%= image_tag "pages/shaaa.jpg", class:"pages-photo"  %>
+
+    <div class="pages-box">
+      <p><%= link_to "リンクスへ戻る", "/links", class:"pages-link" %></p>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,29 @@
+<main>
+  <div class="pages-main">
+    <h1 class="pages-title">リンクスページ</h1>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">アプリのコンセプト</h3>
+      <P class="pages-text">音楽演奏をアウトプットから支援するSlistについて、コンセプトを詳しく紹介しています。</P>
+      <p><%= link_to "このアプリ、Solistについて", "/about", class:"pages-link" %></p>
+    </div>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">アプリの使い方</h3>
+      <P class="pages-text">Solistの使い方を説明しています。</P>
+      <p><%= link_to "このアプリの使い方について", "/howto", class:"pages-link" %></p>
+    </div>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">開発者の自己紹介</h3>
+      <P class="pages-text">自己紹介と開発の経緯を説明しています。</P>
+      <p><%= link_to "開発者の自己紹介", "/developer", class:"pages-link" %></p>
+    </div>
+
+    <%= image_tag "pages/plant-cherry.jpg", class:"pages-photo"  %>
+
+    <div class="pages-box">
+      <p><%= link_to "トップページへ戻る", root_path, class:"pages-link" %></p>
+    </div>
+  </div>
+</main>
