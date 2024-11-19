@@ -1,0 +1,86 @@
+
+.pages-main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pages-title{
+  font-size:x-large;
+}
+.pages-topic{
+  font-size:large;
+}
+.pages-text{
+  font-size: small;
+}
+.pages-link{
+  font-size: medium;
+}
+.pages-box{
+  margin-top: 20px;
+  padding: 10px;
+  width: 550px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.pages-photo{
+  width: 400px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* --------------------------スクロール内ここから */
+.pages-scroll{
+  width: 500px;
+  padding: 10px;
+  display: flex;
+  overflow-x: scroll;
+  background-color: rgba(192, 166, 121, 0.25);
+  border-radius: 8px;
+  scroll-snap-type: x mandatory;
+}
+.pages-screenshot-box{
+  width: 400px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: center;
+}
+.pages-screenshot{
+  object-fit: contain;
+}
+.pages-tips{
+  width: 100%;
+  font-size: small;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* --------------------------スクロール内ここまで */
+
+/* ------------------------------------------共通フォント */
+
+h1,h3,p,.pages-text,.pages-tips{
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  /* color: red; */
+}
+
+/* ---------------------------------マルチデバイス */
+@media (max-width: 600px) {
+  /* ----------------------------------ヘッダー */
+  .pages-box{
+    width: 90%;
+  }
+  .pages-photo{
+    width: 85%;
+  }
+  .pages-scroll{
+    width: 90%;
+  }
+  .pages-screenshot-box{
+    width: 90%;
+  }
+}

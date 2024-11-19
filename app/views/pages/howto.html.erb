@@ -1,2 +1,102 @@
-<h1>Pages#howto</h1>
-<p>Find me in app/views/pages/howto.html.erb</p>
+<main>
+  <div class="pages-main">
+    <h1 class="pages-title">アプリの使い方</h1>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">ユーザー登録</h3>
+      <P class="pages-text"></br> このアプリは開発中です。</br></br> 現在は、ダミーのメールアドレスで登録可能です。(xxxx@xxxx.comなど)</br></br> 開発中のため、アップロードされたファイルを削除する場合がありますので、ご了承ください。</P>
+    </div>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">プロフィール作成</h3>
+      <P class="pages-text"></br> 気軽にアウトプットできるため、サブアカウントのようにプロフィールをいくつでも作成できるようになっています。</br></br> 以下の説明画像を参考に、プロフィールを作成してください。</P>
+    </div>
+    <div class="pages-scroll">
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile1.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">メニュアイコンから新規プロフィール作成をクリック</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile2.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">画像ファイルをアップロード</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile3.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">iPhoneの場合、写真ライブラリから好きな画像を選択</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile4.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">名前はニックネームを記入。紹介文も記載し、OKをクリック</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile5.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">プロフィール作成後は、左上のアイコンから選択可能</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/howtoprofile6.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">削除する場合は、削除したいプロフィールを選択した状態で、右上のメニューから削除</div>
+      </div>
+    </div>
+
+    <div class="pages-box">
+      <h3 class="pages-topic">サウンド投稿</h3>
+      <P class="pages-text"></br> 様々な音声ファイルを投稿することができます。</br></br> 以下ではiPhoneからの投稿方法を説明します。</P>
+    </div>
+    <div class="pages-scroll">
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/voicememo1.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">iPhoneに入っているアプリ「ボイスメモ」で録音。赤い丸印で録音開始。</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/voicememo2.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">赤い四角ボタンで録音終了。</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/voicememo3.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">録音したファイルを選択し、上記の丸印から編集。</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/voicememo4.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">「録音を編集」では、不要な録音部分をトリミング可能。その後「"ファイル"に保存」を選択。</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/voicememo5.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">右上の「保存」で、「ファイル」アプリに保存。</div>
+      </div>
+    </div>
+
+    <div class="pages-box">
+      <P class="pages-text"></br> 続いて、Solistからファイルを投稿します。</P>
+    </div>
+    <div class="pages-scroll">
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound1.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">メニューからサウンドの新規投稿をクリック</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound2.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">新規投稿画面へ移動し「ファイルを選択をクリック」</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound3.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">もう一度、「ファイルを選択」をクリック</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound4.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">「フォルダ」に保存されたファイルを選択</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound5.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">音声ファイルが添付されていることを確認し、説明文を入力。OKで投稿完了</div>
+      </div>
+      <div class="pages-screenshot-box">
+        <%= image_tag "pages/newsound6.JPG", class:"pages-screenshot"  %>
+        <div class="pages-tips">削除する場合は、削除ボタンから削除</div>
+      </div>
+    </div>
+
+    <div class="pages-box">
+      <p><%= link_to "リンクスへ戻る", "/links", class:"pages-link" %></p>
+    </div>
+  </div>
+</main>
