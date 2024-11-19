@@ -23,6 +23,7 @@
         <%= render partial: "layouts/avatar", locals: { current_profile: current_profile, profiles: profiles } %>
       </ul>
     </nav>
+  <% end %>
 
     <nav id="dropdownMenu" class="dropdown-menu">
       <ul>
@@ -30,7 +31,6 @@
         <%= render partial: "layouts/menu", locals: { current_profile: current_profile, profiles: profiles } %>
       </ul>
     </nav>
-  <% end %>
 </header>
 <%# ----------- alert ----------- %>
 <div id="alert">

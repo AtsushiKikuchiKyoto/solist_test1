@@ -4,28 +4,28 @@ RSpec.describe "Pages", type: :request do
 
   describe "GET /links" do
     it "returns http success" do
-      get "/pages/links"
+      get "/links"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /about" do
     it "returns http success" do
-      get "/pages/about"
+      get "/about"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /howto" do
     it "returns http success" do
-      get "/pages/howto"
+      get "/howto"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /developer" do
     it "returns http success" do
-      get "/pages/developer"
+      get "/developer"
       expect(response).to have_http_status(:success)
     end
   end
