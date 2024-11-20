@@ -38,6 +38,15 @@ RSpec.describe "Profiles", type: :request do
         expect(response.body).to include('type="submit"')
       end
     end
+
+    context "createアクション" do
+      it "正常にプロフィールを作成できる" do
+        # ペンディング 
+        profile_params = attributes_for(:profile).merge(user_id: @user.id)
+        post profiles_path, params: { profile: profile_params }
+        # expect(response).to have_http_status(200)
+      end
+    end
     
     context "editアクション" do
       it "プロフィール選択時、ページの遷移確認" do
@@ -66,14 +75,22 @@ RSpec.describe "Profiles", type: :request do
       end
     end
 
+    context "updateアクション" do
+      it "正常にプロフィールを作成できる" do
+      end
+    end
+
     context "showアクション" do
       it "ページの遷移確認" do
         get profile_path(@profile)
         expect(response).to have_http_status(200)
       end
     end
-  end
 
+    context "destroyアクション" do
+    end
+  end
+# -------------------------------------
   describe "ログアウト状態のテスト" do
     context "newアクション" do
       it "ページの遷移できない" do
