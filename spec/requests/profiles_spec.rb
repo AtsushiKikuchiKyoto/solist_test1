@@ -3,11 +3,15 @@ require 'rails_helper'
 RSpec.describe "Profiles", type: :request do
   before do
     @user = FactoryBot.create(:user)
-    sign_in @user
     @profile = FactoryBot.create(:profile)
     @sound = FactoryBot.create(:sound)
   end
-  describe "コントローラーテスト" do
+
+  describe "ログイン状態のテスト" do
+    before do
+      sign_in @user
+    end
+
     context "indexアクション" do
       it "ページの遷移確認" do
         get root_path
@@ -18,6 +22,7 @@ RSpec.describe "Profiles", type: :request do
         expect(response.body).to include(@sound.text)
       end
     end
+
     context "newアクション" do
       it "ページの遷移確認" do
         get new_profile_path
@@ -31,17 +36,55 @@ RSpec.describe "Profiles", type: :request do
         expect(response.body).to include('type="submit"')
       end
     end
+    
     context "editアクション" do
-      it "ページの遷移確認" do
-        get new_profile_path
+      it "プロフィール選択時、ページの遷移確認" do
+        get profiles_switch_path(@profile)
+        get edit_profile_path(@profile)
         expect(response).to have_http_status(200)
       end
-      it "ページのフォーム確認" do
-        get edit_profile_path(@profile.id)
+      it "プロフィール未選択、ページの遷移できない" do
+        get edit_profile_path(@profile)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:danger]).to eq("プロフィールを作成し選択してください。")
+      end
+      it "プロフィール選択時、ページのフォーム確認" do
+        get profiles_switch_path(@profile)
+        get edit_profile_path(@profile)
         expect(response.body).to include("profile[image]")
         expect(response.body).to include("profile[name]")
         expect(response.body).to include("profile[text]")
         expect(response.body).to include('type="submit"')
+      end
+    end
+
+    context "showアクション" do
+      it "ページの遷移確認" do
+        get profile_path(@profile)
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe "ログアウト状態のテスト" do
+    context "newアクション" do
+      it "ページの遷移できない" do
+        get new_profile_path
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "editアクション" do
+      it "ページの遷移できない" do
+        get edit_profile_path(@profile)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "showアクション" do
+      it "ページの遷移できない" do
+        get profile_path(@profile)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end

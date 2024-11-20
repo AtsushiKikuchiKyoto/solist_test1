@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :no_current_profile, only: :edit
   before_action :set_profiles, except: [:switch]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:index, :new, :edit, :show]
@@ -83,4 +84,10 @@ class ProfilesController < ApplicationController
     @sounds = Sound.all.order('created_at DESC').includes(:profile, comments: :profile)
   end
 
+  def no_current_profile
+    if session[:current_profile_id] == nil
+      flash[:danger] = "プロフィールを作成し選択してください。"
+      redirect_to root_path
+    end
+  end
 end
