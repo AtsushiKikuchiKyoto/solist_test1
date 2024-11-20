@@ -5,6 +5,8 @@ RSpec.describe "Profiles", type: :request do
     @user = FactoryBot.create(:user)
     @profile = FactoryBot.create(:profile)
     @sound = FactoryBot.create(:sound)
+    @another_user = FactoryBot.create(:user)
+    @another_user_profile = FactoryBot.create(:profile, user: @another_user)
   end
 
   describe "ログイン状態のテスト" do
@@ -55,6 +57,12 @@ RSpec.describe "Profiles", type: :request do
         expect(response.body).to include("profile[name]")
         expect(response.body).to include("profile[text]")
         expect(response.body).to include('type="submit"')
+      end
+      it "他ユーザーのプロフィール編集ページへ遷移できない" do
+        get profiles_switch_path(@profile)
+        get edit_profile_path(@another_user_profile)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:danger]).to eq("プロフィールが異なります。")
       end
     end
 
