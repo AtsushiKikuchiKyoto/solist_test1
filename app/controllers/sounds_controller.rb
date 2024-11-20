@@ -1,4 +1,6 @@
 class SoundsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :no_current_profile
   before_action :set_profiles, only:[:new, :create, :edit, :update]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:new, :create, :edit, :update]
@@ -55,6 +57,13 @@ class SoundsController < ApplicationController
 
   def set_sound
     @sound = Sound.find(params[:id])
+  end
+
+  def no_current_profile
+    if session[:current_profile_id] == nil
+      flash[:danger] = "プロフィールを作成し選択してください。"
+      redirect_to root_path
+    end
   end
 
 end

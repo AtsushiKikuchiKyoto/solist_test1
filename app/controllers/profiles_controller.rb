@@ -50,7 +50,7 @@ class ProfilesController < ApplicationController
 
   def switch
     flash[:success] = "プロフィールを切り替えました。"
-    redirect_to request.referer
+    redirect_to(request.referer || root_path)
   end
   
   private
