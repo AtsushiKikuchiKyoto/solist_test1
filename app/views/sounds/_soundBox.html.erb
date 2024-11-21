@@ -23,9 +23,9 @@
 
               <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
 
-            <% if current_profile %>
+            <%# if current_profile %>
               <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
-            <% end %>
+            <%# end %>
 
           <% end %>
         </div>
@@ -33,11 +33,11 @@
     </div>
 
     <%# -------コメント部分------- %>
-    <% if current_profile %>
+    <%# if current_profile %>
       <div class="comment-box", id="comment_<%= i %>">
         <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile, i:i} %>
       </div>
-    <% end %>
+    <%# end %>
 
   <% end %>
 

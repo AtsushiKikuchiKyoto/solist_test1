@@ -1,4 +1,4 @@
-<% sound.comments.each do |comment| %>
+<% sound.comments.reverse_each do |comment| %>
   <div class="comment-bottom">
     <%= link_to profile_path(comment.profile.id), class:"comment-left" do %>
       <%= image_tag comment.profile.image, class: "comment-avatar" %>
@@ -8,7 +8,7 @@
       <textarea class="comment-text"><%= comment.text %></textarea>
     </div>
 
-    <% if current_profile.id == comment.profile.id %>
+    <% if current_profile && current_profile.id == comment.profile.id %>
       <%= link_to "削除", sound_comment_path(sound.id, comment.id, index: i), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, turbo: true, class: "comment-delete" %>
     <% end %>
   </div>

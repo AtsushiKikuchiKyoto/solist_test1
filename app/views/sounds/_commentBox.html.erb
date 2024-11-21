@@ -1,7 +1,11 @@
+<% if current_profile %>
+
 <%= form_with model: [ sound, Comment.new ], class:"comment-top" do |f| %>
   <%= f.text_area :text, placeholder: "コメントを入力できます", class: "comment-form-text", id: "text" %>
   <%= f.hidden_field :comment_index, value: i %>
   <%= f.submit "OK", class:"comment-submit", id: "submit" %>
+<% end %>
+
 <% end %>
 
 <div id="comments-each">

@@ -3,50 +3,26 @@ require 'rails_helper'
 RSpec.describe "Comments", type: :system do
   before do
     @user = FactoryBot.create(:user)
+    @profile = FactoryBot.create(:profile, user: @user)
+    @sound = FactoryBot.create(:sound, profile: @profile)
     driven_by(:selenium_chrome_headless)
-    # driven_by(:selenium_chrome)
   end
-  describe "システムテスト" do
 
-    # before action ユーザー登録
+  describe "ログインかつProfile選択状態テスト" do
     before do
-      visit new_user_session_path
-      fill_in 'email', with: @user.email
-      fill_in 'password', with: @user.password
-      click_on 'submit'
-      expect(page).to have_current_path(root_path)
-    end
-    # before action プロフィール作成
-    before do
-      find('#menu-icon').click
-      expect(page).to have_content('新規プロフィール作成')
-      click_on 'newProfile'
-      expect(page).to have_current_path(new_profile_path)
-      attach_file 'profile[image]', "#{Rails.root}/app/assets/images/avatar.jpg"
-      fill_in 'name', with: 'AAA'
-      fill_in 'text', with: 'aaaaaa'
-      click_on 'submit'
-      expect(page).to have_current_path(root_path)
-      find('#avatar-icon').click
-      expect(page).to have_content('AAA')
-    end
-    # before action サウンド作成
-    before do
-      find('#menu-icon').click
-      click_on 'newSound'
-      attach_file 'sound[sound]', "#{Rails.root}/spec/files/sound.m4a"
-      fill_in 'text', with: 'aaaaaa'
-      click_on 'submit'
-      expect(page).to have_current_path(root_path)
-      expect(page).to have_content('aaaaaa')
+      sign_in @user
+      visit profiles_switch_path(@profile)
     end
 
     context "comment投稿機能" do
-      it "テキストを入力し、削除" do
-        first('.comment-hide').click
-        fill_in 'text', with: 'bbbbbb'
-        click_on 'submit'
-        sleep 1
+      it "コメントを作成し削除できる" do
+        visit root_path
+        expect {
+          first('.comment-hide').click
+          fill_in 'text', with: 'bbbbbb'
+          click_on 'submit'
+          sleep 1
+        }.to change { @profile.comments.count }.by(1)
         expect(page).to have_current_path(root_path)
         expect(page).to have_content('bbbbbb')
         find('.comment-delete').click
@@ -54,6 +30,31 @@ RSpec.describe "Comments", type: :system do
         sleep 1
         expect(page).to have_current_path(root_path)
         expect(page).to have_no_content('bbbbbb')
+      end
+    end
+  end
+
+  describe "ログインかつProfile選択なし状態テスト" do
+    before do
+      sign_in @user
+    end
+
+    context "comment閲覧機能" do
+      it "コメントを閲覧できるが投稿フォームはなし" do
+        visit root_path
+        expect(page).to have_no_selector('.comment-box')
+        first('.comment-hide').click
+        expect(page).to have_selector('.comment-box')
+        expect(page).to have_no_content('コメントを入力できます')
+      end
+    end
+  end
+
+  describe "ログアウト状態テスト" do
+    context "comment閲覧できない" do
+      it "ボタンもない" do
+        visit root_path
+        expect(page).to have_no_selector('.comment-hide')
       end
     end
   end

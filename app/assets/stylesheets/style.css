@@ -435,9 +435,11 @@ main {
   font-size: x-small;
   background-color: gray;
   color: white;
-  border-radius: 8%;
+  border-radius: 12%;
 }
-
+textarea {
+  resize: none;
+}
 /* ----------------------------------------------エラー表示 */
 .error-alert{
   border: solid 1px gray;
