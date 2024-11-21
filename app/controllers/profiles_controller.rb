@@ -83,8 +83,10 @@ class ProfilesController < ApplicationController
   def set_current_profile
     if session[:current_profile_id] == nil
       @current_profile = nil
-    else
+    elsif Profile.find_by(id: session[:current_profile_id])
       @current_profile = Profile.find(session[:current_profile_id])
+    else
+      @current_profile = nil
     end
   end
 
