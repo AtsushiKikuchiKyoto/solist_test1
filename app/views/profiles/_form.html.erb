@@ -1,5 +1,5 @@
 <%= form_with model: profile, local: true do |f| %>
-  <p>画像ファイル(500kb以下)</p>
+  <p>画像ファイル(2MB未満)</p>
   <%= f.file_field :image, class: "profile-form-file", id: "image" %>
 
 <%# --------エラーメッセージ--------- %>
