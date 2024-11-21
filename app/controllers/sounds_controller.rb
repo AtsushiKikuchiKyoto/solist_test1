@@ -1,6 +1,7 @@
 class SoundsController < ApplicationController
   before_action :authenticate_user!
-  before_action :no_current_profile
+  before_action :no_current_profile, only:[:new, :create]
+  before_action :not_your_sound, only:[:edit, :update, :destroy]
   before_action :set_profiles, only:[:new, :create, :edit, :update]
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
   before_action :set_current_profile, only: [:new, :create, :edit, :update]
@@ -66,4 +67,11 @@ class SoundsController < ApplicationController
     end
   end
 
+  def not_your_sound
+    sound_user = Sound.find(params[:id]).profile.user
+    unless current_user == sound_user
+      flash[:danger] = "別のユーザーのサウンドです。"
+      redirect_to root_path
+    end
+  end
 end
