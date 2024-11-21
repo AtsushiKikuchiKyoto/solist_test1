@@ -27,10 +27,10 @@ RSpec.describe Profile, type: :model do
         @profile.valid?
         expect(@profile.errors.full_messages).to include "アバター画像を入力してください"
       end
-      it '画像が500kb以上のとき' do
+      it '画像が2Mb以上のとき' do
         @profile.image.attach(io: File.open('spec/files/over_size_avatar.jpg'), filename: 'over_size_avatar.jpg')
         @profile.valid?
-        expect(@profile.errors.full_messages).to include "アバター画像ファイル サイズは 500KB 未満にする必要があります (現在のサイズは 1.22MB)"
+        expect(@profile.errors.full_messages).to include "アバター画像ファイル サイズは 2MB 未満にする必要があります (現在のサイズは 2.05MB)"
       end
       it '対応していない画像拡張子のとき' do
         @profile.image.attach(io: File.open('spec/files/unsupported_format_avatar.webp'), filename: 'unsupported_format_avatar.webp')
