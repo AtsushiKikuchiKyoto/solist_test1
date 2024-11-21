@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
   end
   
   def create
-    @profile = Profile.new(profile_params)
+    @profile = Profile.new(image_resize(profile_params))
     if @profile.save
       session[:current_profile_id] = @profile.id
       flash[:success] = "プロフィールが作成されました。アバターアイコンから選択可能です。"
@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.update(profile_params)
+    if @profile.update(image_resize(profile_params))
       flash[:success] = "プロフィールを編集しました。"
       redirect_to root_path
     else
@@ -58,6 +58,13 @@ class ProfilesController < ApplicationController
   private
   def profile_params
     params.require(:profile).permit(:image, :name, :text).merge(user_id: current_user.id)
+  end
+
+  def image_resize(params)
+    if params[:image]
+      params[:image].tempfile = ImageProcessing::MiniMagick.source(params[:image].tempfile).resize_to_limit(100, 100).call
+    end
+    params
   end
 
   def set_profiles
