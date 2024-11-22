@@ -34,6 +34,10 @@ class CommentsController < ApplicationController
   end
 
   def set_current_profile
-    @current_profile = Profile.find(session[:current_profile_id])
+    if (cp = Profile.find_by(id: session[:current_profile_id]))
+      @current_profile = cp
+    else
+      @current_profile = nil
+    end
   end
 end

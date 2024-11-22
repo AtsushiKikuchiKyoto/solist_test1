@@ -45,14 +45,14 @@ class SoundsController < ApplicationController
   end
 
   def set_profiles
-    @profiles = current_user.profiles.all
+    @profiles = current_user.profiles.all if user_signed_in?
   end
 
   def set_current_profile
-    if session[:current_profile_id] == nil
-      @current_profile = nil
+    if (cp = Profile.find_by(id: session[:current_profile_id]))
+      @current_profile = cp
     else
-      @current_profile = Profile.find(session[:current_profile_id])
+      @current_profile = nil
     end
   end
 
@@ -61,7 +61,7 @@ class SoundsController < ApplicationController
   end
 
   def no_current_profile
-    if session[:current_profile_id] == nil
+    unless session[:current_profile_id]
       flash[:danger] = "プロフィールを作成し選択してください。"
       redirect_to root_path
     end
