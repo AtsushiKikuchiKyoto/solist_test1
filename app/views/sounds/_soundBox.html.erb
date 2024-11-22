@@ -2,7 +2,7 @@
   <% sounds.each_with_index do |sound, i| %>
     <div class="sound-each">
       <div class="sound-top">
-        <%= link_to profile_path(sound.profile.id), class:"sound-image-name" do %>
+        <%= link_to profile_path(sound.profile), class:"sound-image-name" do %>
           <%= image_tag sound.profile.image, class: "sound-profile" %>
           <div class="sound-name"><%= sound.profile.name %></div>
         <% end %>
@@ -21,7 +21,7 @@
               <div><%= link_to "削除", sound_path(sound), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
             <% end %>
 
-              <div><%= link_to "詳細", profile_path(sound.profile.id), class:"sound-actions-text", id:"showProfile" %></div>
+              <div><%= link_to "詳細", profile_path(sound.profile), class:"sound-actions-text", id:"showProfile" %></div>
 
             <%# if current_profile %>
               <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>

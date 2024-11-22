@@ -13,7 +13,7 @@ RSpec.describe "Sounds", type: :request do
 
     context "newアクション" do
       it "ページの遷移確認" do
-        get profiles_switch_path(@profile.id)
+        get profiles_switch_path(@profile)
         get new_sound_path
         expect(response).to have_http_status(200)
       end
@@ -21,8 +21,8 @@ RSpec.describe "Sounds", type: :request do
 
     context "editアクション" do
       it "ページの遷移確認" do
-        get profiles_switch_path(@profile.id)
-        get edit_sound_path(@sound.id)
+        get profiles_switch_path(@profile)
+        get edit_sound_path(@sound)
         expect(response).to have_http_status(200)
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe "Sounds", type: :request do
 
     context "editアクション" do
       it "ページの遷移できない" do
-        get edit_sound_path(@sound.id)
+        get edit_sound_path(@sound)
         expect(response).to redirect_to(new_user_session_path)
       end
     end

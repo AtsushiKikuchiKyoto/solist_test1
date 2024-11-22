@@ -7,9 +7,9 @@
   <% end %>
 
 <% if current_profile %>
-  <li><%= link_to "現在のプロフィールの編集", edit_profile_path(current_profile.id), id: "editProfile", class: "menu-li" %></li>
+  <li><%= link_to "現在のプロフィールの編集", edit_profile_path(current_profile), id: "editProfile", class: "menu-li" %></li>
 
-  <li><%= link_to "現在のプロフィールの削除", profile_path(current_profile.id), data: {turbo_method: :delete, turbo_confirm: "削除しますか?" }, id: "deleteProfile", class: "menu-li" %></li>
+  <li><%= link_to "現在のプロフィールの削除", profile_path(current_profile), data: {turbo_method: :delete, turbo_confirm: "削除しますか?" }, id: "deleteProfile", class: "menu-li" %></li>
 <% end %>
 
 <li><%= link_to "リンクス", links_url, id: "toLinks", class: "menu-li" %></li>
