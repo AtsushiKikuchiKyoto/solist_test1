@@ -1,5 +1,5 @@
 <div class="sounds-box">
-  <% sounds.each_with_index do |sound, i| %>
+  <% @sounds.each_with_index do |sound, i| %>
     <div class="sound-each">
       <div class="sound-top">
         <%= link_to profile_path(sound.profile), class:"sound-image-name" do %>
@@ -10,35 +10,35 @@
       </div>
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio", id: "audio_#{i}" %>
 
-        <div class="sound-actions">
-          <% if user_signed_in? %>
+      <div class="sound-actions">
+        <% if user_signed_in? %>
 
-            <% if current_user == sound.profile.user%>
-              <div><%= link_to "編集", edit_sound_path(sound), class:"sound-actions-text", id:"editSound" %></div>
-            <% end %>
-
-            <% if sound.profile.user == current_user%>
-              <div><%= link_to "削除", sound_path(sound), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
-            <% end %>
-
-              <div><%= link_to "詳細", profile_path(sound.profile), class:"sound-actions-text", id:"showProfile" %></div>
-
-              <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
-
+          <% if current_user == sound.profile.user%>
+            <div><%= link_to "編集", edit_sound_path(sound), class:"sound-actions-text", id:"editSound" %></div>
           <% end %>
-        </div>
+
+          <% if sound.profile.user == current_user%>
+            <div><%= link_to "削除", sound_path(sound), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
+          <% end %>
+
+            <div><%= link_to "詳細", profile_path(sound.profile), class:"sound-actions-text", id:"showProfile" %></div>
+
+            <div class="comment-hide", id="sound_<%= i %>">コメント<%= sound.comments.count %></div>
+
+        <% end %>
+      </div>
 
     </div>
 
     <%# -------コメント部分------- %>
-      <div class="comment-box", id="comment_<%= i %>">
-        <%= render partial: "sounds/commentBox", locals: { sound: sound, current_profile: current_profile, i:i} %>
-      </div>
+    <div class="comment-box", id="comment_<%= i %>">
+      <%= render partial: "comments/commentBox", locals: { sound: sound, i:i} %>
+    </div>
 
   <% end %>
+</div>
 
     <%# -------プレイボタン部分------- %>
-</div>
 <div class="play grayscale">
   <%= image_tag "play.svg", class: "play-icon", id: "play-button" %>
 </div>

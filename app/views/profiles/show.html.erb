@@ -1,7 +1,4 @@
 <main>
-    <%# -------プロフィール部分------- %>
-    <%= render partial: "profile", locals: { profile: @profile } %>
-
-    <%# -------サウンド部分------N+1注意----- %>
-    <%= render partial: "sounds/soundBox", locals: { profile: @profile, current_profile: @current_profile, sounds: @sounds, comments: @comments } %>
+  <%= render partial: "profile" %>
+  <%= render partial: "sounds/soundBox" %>
 </main>

@@ -3,7 +3,8 @@
     <h2>プロフィールを新規作成する</h2>
     <p>プロフィールはいくつでも作成できます。楽器ごとに異なる顔を持ちましょう！</p><br>
     <%= link_to "プロフィール作成方法の説明ページはこちら", howto_path(anchor: "howto-profile") %>
-    <%# _formへ切り出し %>
-    <%= render partial: "form", locals: { profile: @profile } %>
+
+    <%= render partial: "form" %>
+
   </section>
 </main>
