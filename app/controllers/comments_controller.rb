@@ -1,15 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_current_profile
   before_action :set_sound
+  before_action :hotwire
 
   def create
     Comment.create(comment_params)
     @i = params[:comment][:comment_index]
     flash[:success] = "コメントをしました。"
-    respond_to do |format|
-      format.turbo_stream #Rail search 'create.turbo_stream.erb'
-      format.html { redirect_to request.referer }
-    end
   end
 
   def destroy
@@ -17,10 +14,6 @@ class CommentsController < ApplicationController
     @i = params[:index]
     flash[:info] = "コメントを削除しました。"
     comment.destroy
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to request.referer }
-    end
   end
 
   private
@@ -33,7 +26,10 @@ class CommentsController < ApplicationController
     @sound = Sound.find(params[:sound_id])
   end
 
-  def set_current_profile
-    @current_profile = Profile.find(session[:current_profile_id])
+  def hotwire
+    respond_to do |format|
+      format.turbo_stream #Rail search 'action.turbo_stream.erb'
+      format.html { redirect_to request.referer }
+    end
   end
 end

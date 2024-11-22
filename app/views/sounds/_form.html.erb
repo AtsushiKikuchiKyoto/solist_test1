@@ -1,16 +1,15 @@
-<%= form_with model: sound, local: true do |f| %>
+<%= form_with model: @sound, local: true do |f| %>
   <p>音声ファイル</p>
   <%= f.file_field :sound, class: "sound-form-file" %>
 
   <%# new edit での処理の違い %>
-  <% if sound.profile_id == nil %>
-    <%= hidden_field_tag :profile_id, current_profile.id %>
+  <% unless @sound.profile_id %>
+    <%= hidden_field_tag :profile_id, @current_profile.id %>
   <% else %>
-    <%= hidden_field_tag :profile_id, sound.profile_id %>
+    <%= hidden_field_tag :profile_id, @sound.profile_id %>
   <% end %>
 
-    <%# --------エラーメッセージ--------- %>
-    <%= render 'layouts/error', model: f.object %>
+  <%= render 'layouts/error', model: f.object %>
 
   <p>タイトル・説明文(必須)</p>
   <%= f.text_field :text, class: "sound-form-text", id: "text" %>

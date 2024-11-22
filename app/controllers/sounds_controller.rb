@@ -1,10 +1,10 @@
 class SoundsController < ApplicationController
   before_action :authenticate_user!
-  before_action :no_current_profile, only:[:new, :create]
-  before_action :not_your_sound, only:[:edit, :update, :destroy]
-  before_action :set_profiles, only:[:new, :create, :edit, :update]
-  before_action :set_sound, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_profile, only: [:new, :create, :edit, :update]
+  before_action :no_current_profile,  only:[:new, :create]
+  before_action :not_your_sound,      only:[:edit, :update, :destroy]
+  before_action :set_profiles,        only:[:new, :create, :edit, :update]
+  before_action :set_sound,           only:[:show, :edit, :update, :destroy]
+  before_action :set_current_profile, only:[:new, :create, :edit, :update]
 
   def new
     @sound = Sound.new
@@ -44,27 +44,8 @@ class SoundsController < ApplicationController
     params.require(:sound).permit(:text, :sound).merge(profile_id: params[:profile_id])
   end
 
-  def set_profiles
-    @profiles = current_user.profiles.all
-  end
-
-  def set_current_profile
-    if session[:current_profile_id] == nil
-      @current_profile = nil
-    else
-      @current_profile = Profile.find(session[:current_profile_id])
-    end
-  end
-
   def set_sound
     @sound = Sound.find(params[:id])
-  end
-
-  def no_current_profile
-    if session[:current_profile_id] == nil
-      flash[:danger] = "プロフィールを作成し選択してください。"
-      redirect_to root_path
-    end
   end
 
   def not_your_sound

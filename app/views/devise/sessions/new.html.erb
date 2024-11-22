@@ -1,15 +1,14 @@
 <main>
   <section class="user-login" id="devise">
     <h2>ログイン画面</h2>
-    <%# ログイン時のエラーメッセージ  %>
     <div>
       <%= flash[:notice] %>
       <%= flash[:alert] %>
     </div>
 
     <%= form_with model: @user, url: user_session_path, class: "user-form", local: true do |f| %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-form-field", id: "email" %>
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "user-form-field", id: "password" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "user-form-field", id: "email" %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "user-form-field", id: "password" %>
       <%= f.submit "ログイン",class: "user-form-submit", id: "submit" %>
     <% end %>
   </section>

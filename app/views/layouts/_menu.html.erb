@@ -1,15 +1,15 @@
-  <% if current_profile %>
-    <li><%= link_to "サウンドの新規投稿", new_sound_path, id: "newSound", class: "menu-li" %></li>
-  <% end %>
+<% if current_profile %>
+  <li><%= link_to "サウンドの新規投稿", new_sound_path, id: "newSound", class: "menu-li" %></li>
+<% end %>
 
-  <% if user_signed_in? %>
-    <li><%= link_to "新規プロフィール作成", new_profile_path, id: "newProfile", class: "menu-li" %></li>
-  <% end %>
+<% if user_signed_in? %>
+  <li><%= link_to "新規プロフィール作成", new_profile_path, id: "newProfile", class: "menu-li" %></li>
+<% end %>
 
 <% if current_profile %>
-  <li><%= link_to "現在のプロフィールの編集", edit_profile_path(current_profile.id), id: "editProfile", class: "menu-li" %></li>
+  <li><%= link_to "現在のプロフィールの編集", edit_profile_path(current_profile), id: "editProfile", class: "menu-li" %></li>
 
-  <li><%= link_to "現在のプロフィールの削除", profile_path(current_profile.id), data: {turbo_method: :delete, turbo_confirm: "削除しますか?" }, id: "deleteProfile", class: "menu-li" %></li>
+  <li><%= link_to "現在のプロフィールの削除", profile_path(current_profile), data: {turbo_method: :delete, turbo_confirm: "削除しますか?" }, id: "deleteProfile", class: "menu-li" %></li>
 <% end %>
 
 <li><%= link_to "リンクス", links_url, id: "toLinks", class: "menu-li" %></li>

@@ -7,7 +7,6 @@ function comment(){
       const commentId = `comment_${soundId}`;
       const comment = document.getElementById(commentId);
       if (comment) {
-        console.log("C")
         if (comment.getAttribute("style") == "display:flex;") {
           comment.setAttribute("style", "display:none;")
         } else {

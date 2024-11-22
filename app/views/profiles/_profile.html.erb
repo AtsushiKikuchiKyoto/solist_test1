@@ -1,12 +1,11 @@
-
 <div class="profile-wrapper">
   <div class="profile-box">
     <div class="profile-left">
-      <%= image_tag profile.image, class: "profile-profile" %>
+      <%= image_tag @profile.image, class: "profile-profile" %>
     </div>
     <div class="profile-right">
-      <div class="profile-name">プロフィール：<%= profile.name %></div>
-      <textarea rows="3" class="profile-text"><%= profile.text %></textarea>
+      <div class="profile-name">プロフィール：<%= @profile.name %></div>
+      <textarea rows="3" class="profile-text"><%= @profile.text %></textarea>
     </div>
   </div>
 </div>

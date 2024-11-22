@@ -4,8 +4,7 @@
     <p>間違っていても大丈夫。気軽に音楽をアウトプットしましょう！</p><br>
     <%= link_to "サウンド投稿方法の説明ページはこちら", howto_path(anchor: "howto-sound") %>
 
-    <%# _formへ切り出し %>
-    <%= render partial: "form", locals: {current_profile: @current_profile, sound: @sound } %>
+    <%= render partial: "form" %>
 
   </section>
 </main>
