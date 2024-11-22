@@ -12,11 +12,4 @@ class PagesController < ApplicationController
 
   def developer
   end
-
-  private
-
-  def set_profiles
-    @profiles = current_user.profiles.all if user_signed_in?
-  end
-
 end
