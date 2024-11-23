@@ -2,6 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "menu"
-import "avatar"
 import "comment"
 import "play"

@@ -15,9 +15,7 @@
 
           <% if current_user == sound.profile.user%>
             <div><%= link_to "編集", edit_sound_path(sound), class:"sound-actions-text", id:"editSound" %></div>
-          <% end %>
 
-          <% if sound.profile.user == current_user%>
             <div><%= link_to "削除", sound_path(sound), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, class:"sound-actions-text", id:"deleteSound" %></div>
           <% end %>
 
