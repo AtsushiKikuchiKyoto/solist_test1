@@ -4,6 +4,8 @@ function autoplay(){
   let currentIndex = 0;
   const audioPrefix = "audio_";
 
+  if (!button) return null;
+
   function playAudio() {
     const audioElement = document.getElementById(`${audioPrefix}${currentIndex}`);
     audioElement.play();
