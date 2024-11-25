@@ -1,6 +1,6 @@
 <%= form_with model: @sound, local: true do |f| %>
   <p>音声ファイル</p>
-  <%= f.file_field :sound, class: "sound-form-file" %>
+  <%= f.file_field :sound,accept: "audio/mpeg,audio/wav,audio/ogg,audio/mp4,audio/x-m4a", class: "sound-form-file" %>
 
   <%# new edit での処理の違い %>
   <% unless @sound.profile_id %>
