@@ -1,6 +1,8 @@
+
 <%= form_with model: @profile, local: true do |f| %>
   <p>画像ファイル(2MB未満)</p>
-  <%= f.file_field :image, class: "profile-form-file", id: "image" %>
+  <%= f.file_field :image, accept: "image/jpg,image/jpeg,image/gif,image/png", class: "profile-form-file", id: "image" %>
+  <%= image_tag "avatar.jpg",class: "preview", id:"preview" %>
 
 <%# --------エラーメッセージ--------- %>
 <%= render 'layouts/error', model: f.object %>

@@ -444,6 +444,12 @@ textarea {
   list-style: none;
   color: darkred;
 }
+/* ----------------------------------アバター画像プレビュー */
+.preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 10%;
+}
 /* ------------------------------------------共通フォント */
 
 .user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name,.alert{
