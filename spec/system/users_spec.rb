@@ -69,6 +69,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_current_path('/finish')
         expect{ 
           click_on 'submit'
+          page.accept_confirm
           sleep 1
          }.to change { User.count }.by(-1)
          expect(page).to have_current_path(root_path)

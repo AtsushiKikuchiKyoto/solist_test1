@@ -1,7 +1,7 @@
 <main>
   <section class="profile-new">
     <h2>退会する</h2>
-    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p><br>
-    <%= link_to "退会する", user_registration_path, data: {turbo_method: :delete},class: "user-form-submit", id: "submit" %>
+    <p></br>ご利用くださりありがとうございました。</br>退会と同時に、作成されたプロフィール、投稿したサウンドとコメントもデータが削除されます。</br>ご了承いただき、以下のボタンから退会してください。</br></br></br></p>
+    <%= link_to "退会する", user_registration_path, data: {turbo_method: :delete, turbo_confirm: "退会してよろしいですか?" },class: "user-form-submit", id: "submit" %>
   </section>
 </main>
