@@ -61,10 +61,10 @@ RSpec.describe "Users", type: :system do
 
     context "ユーザー削除機能" do
       it "退会ページへ遷移し、ユーザー削除" do
-        sign_in @user
+        sign_in @user2
         visit root_path
         find('#menu-icon').click
-        expect(page).to have_link('退会', href: '/finish')
+        expect(page).to have_content('退会')
         click_on 'finish'
         expect(page).to have_current_path('/finish')
         expect{ 

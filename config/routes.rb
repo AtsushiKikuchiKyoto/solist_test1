@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
   get '/howto', to: 'pages#howto'
   get '/developer', to: 'pages#developer'
+  get '/finish', to: 'pages#finish'
 end
