@@ -434,9 +434,6 @@ main {
   color: white;
   border-radius: 12%;
 }
-textarea {
-  resize: none;
-}
 /* ----------------------------------------------エラー表示 */
 .error-alert{
   border: solid 1px gray;
