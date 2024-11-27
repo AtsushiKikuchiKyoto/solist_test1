@@ -318,8 +318,13 @@ main {
   height: 60px;
 }
 /* -------------------------------------------プロフィール部品 */
+.profile-wrapper{
+  width: 100%;
+}
+
 .profile-box{
   width: 400px;
+  margin: 0 auto;
   padding: 1rem;
   background-color: white;
   border-radius: 8px;
