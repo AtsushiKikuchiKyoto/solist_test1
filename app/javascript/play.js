@@ -7,7 +7,7 @@ function autoplay(){
   
   if (!button) return null;
   
-  // 再生が終わったら次のaudioへ
+  // 順次再生(終わったら次のaudioへ)
   function playAudio() {
     const audioElement = document.getElementById(`audio_${currentIndex}`);
     audioElement.play();
@@ -37,6 +37,7 @@ function autoplay(){
     });
   });
 
+  // クリックで発動
   button.addEventListener("click", ()=>{
     if(onAir){
       const audios = document.querySelectorAll("audio");
@@ -46,6 +47,19 @@ function autoplay(){
     } else {
       playAudio(currentIndex);
     };
+  });
+
+  // Audio二重起動の防止
+  const ary = [];
+  audios.forEach((audio) => {
+    audio.addEventListener("play", () => {
+      if(ary.length>0){
+        console.log(ary[0]);
+        document.getElementById(ary[0]).pause();
+        ary.pop();
+      }
+      ary.push(audio.id);
+    });
   });
 
 };
