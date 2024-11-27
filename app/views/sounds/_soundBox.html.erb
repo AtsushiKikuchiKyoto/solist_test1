@@ -6,7 +6,7 @@
           <%= image_tag sound.profile.image, class: "sound-profile" %>
           <div class="sound-name"><%= sound.profile.name %></div>
         <% end %>
-        <textarea rows="3" class="sound-text"><%= sound.text %></textarea>
+        <div rows="3" class="sound-text"><%= sound.text %></div>
       </div>
       <%= audio_tag url_for(sound.sound), controls: true, class: "audio", id: "audio_#{i}" %>
 
