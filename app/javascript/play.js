@@ -30,37 +30,50 @@ function autoplay(){
   // 順次再生機能
   function playAudio() {
     const audioElement = document.getElementById(`audio_${currentIndex}`);
-    audioElement.play();
+    // audioElement.play();
+    let next = currentIndex
     audioElement.addEventListener("ended", ()=> {
-      currentIndex++;
-      playAudio(currentIndex);
-      console.log(`順次再生機能`);
+      next++;
+      console.log(next);
+      document.getElementById(`audio_${next}`).play();
       },
       { once: true } //重複阻止
     );
   };
   
   // クリックで発動
+  let flag = true;
   button.addEventListener("click", ()=>{
     if(onAir){
       const audios = document.querySelectorAll("audio");
       audios.forEach((audio) => {
         audio.pause();
+        flag = true;
       });
-    } else {
+    } else if(flag) {
+      document.getElementById(`audio_${currentIndex}`).play();
       playAudio(currentIndex);
+      flag = false;
     };
   });
 
+  // クリックなしで順次再生
+  audios.forEach((audio) => {
+    audio.addEventListener("play", () => {
+      playAudio(currentIndex);
+    },
+    { once: true }
+    );
+  });
 
   // Audio二重起動の防止
   const ary = [];
   audios.forEach((audio) => {
     audio.addEventListener("play", () => {
       ary.push(audio.id);
-      if(ary.length>1){
-        document.getElementById(ary[0]).pause();
-      }
+      for (let i = 0; i < ary.length-1; i++){
+        document.getElementById(ary[i]).pause();
+      };
     });
     audio.addEventListener("pause", () => {
       ary.shift();
