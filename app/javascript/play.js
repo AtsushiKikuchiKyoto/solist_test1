@@ -7,16 +7,6 @@ function autoplay(){
   
   if (!button) return null;
   
-  // 順次再生(終わったら次のaudioへ)
-  function playAudio() {
-    const audioElement = document.getElementById(`audio_${currentIndex}`);
-    audioElement.play();
-    audioElement.addEventListener("ended", ()=> {
-      currentIndex++;
-      playAudio(currentIndex);
-    });
-  };
-
   // ボタンのカラー
   audios.forEach((audio) => {
     // 何か再生中
@@ -36,7 +26,20 @@ function autoplay(){
       }
     });
   });
-
+  
+  // 順次再生機能
+  function playAudio() {
+    const audioElement = document.getElementById(`audio_${currentIndex}`);
+    audioElement.play();
+    audioElement.addEventListener("ended", ()=> {
+      currentIndex++;
+      playAudio(currentIndex);
+      console.log(`順次再生機能`);
+      },
+      { once: true } //重複阻止
+    );
+  };
+  
   // クリックで発動
   button.addEventListener("click", ()=>{
     if(onAir){
@@ -49,16 +52,19 @@ function autoplay(){
     };
   });
 
+
   // Audio二重起動の防止
   const ary = [];
   audios.forEach((audio) => {
     audio.addEventListener("play", () => {
       if(ary.length>0){
-        console.log(ary[0]);
         document.getElementById(ary[0]).pause();
         ary.pop();
       }
       ary.push(audio.id);
+    });
+    audio.addEventListener("pause", () => {
+        ary.pop();
     });
   });
 
