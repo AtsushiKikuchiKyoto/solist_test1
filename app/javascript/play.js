@@ -57,14 +57,13 @@ function autoplay(){
   const ary = [];
   audios.forEach((audio) => {
     audio.addEventListener("play", () => {
-      if(ary.length>0){
-        document.getElementById(ary[0]).pause();
-        ary.pop();
-      }
       ary.push(audio.id);
+      if(ary.length>1){
+        document.getElementById(ary[0]).pause();
+      }
     });
     audio.addEventListener("pause", () => {
-        ary.pop();
+      ary.shift();
     });
   });
 
