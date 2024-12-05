@@ -8,7 +8,7 @@ RSpec.describe "Pages", type: :system do
     @sound1 = FactoryBot.create(:sound, profile: @profile)
     @sound2 = FactoryBot.create(:sound, profile: @profile)
     @sound3 = FactoryBot.create(:sound, profile: @profile)
-    # driven_by(:selenium_chrome_headless)
+    driven_by(:selenium_chrome_headless)
   end
 
   describe "ボタンカラー" do

@@ -8,7 +8,7 @@ function toggleMenu (){
       button.setAttribute('no-dubble', 'true'); //二重起動対策
     };
     document.addEventListener('click', (e) => { //閉じる
-      if (!button.contains(e.target)) {
+      if (target && !button.contains(e.target)) {
         target.style.display = "none";
       };
     });

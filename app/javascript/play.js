@@ -1,84 +1,100 @@
-function autoplay(){
-  const background = document.querySelector(".play");
-  const button = document.getElementById("play-button");
-  const audios = document.querySelectorAll("audio");
-  let currentIndex = 0;
-  let onAir = false;
-  
-  if (!button) return null;
-  
-  // ボタンのカラー
-  audios.forEach((audio) => {
-    // 何か再生中
-    audio.addEventListener("play", () => {
-      background.classList.remove("grayscale");
-      background.classList.add("colorful");
-      onAir = true;
-      currentIndex = audio.id.split("_")[1]; //再生中のID取得
-    });
-    // すべて停止中
-    audio.addEventListener("pause", () => {
-      const allPaused = Array.from(audios).every((audio) => audio.paused);
-      if (allPaused) {
-        background.classList.remove("colorful");
-        background.classList.add("grayscale");
-        onAir = false;
-      }
-    });
-  });
-  
-  // 順次再生機能
-  function playAudio() {
-    const audioElement = document.getElementById(`audio_${currentIndex}`);
-    // audioElement.play();
-    let next = currentIndex
-    audioElement.addEventListener("ended", ()=> {
-      next++;
-      console.log(next);
-      document.getElementById(`audio_${next}`).play();
-      },
-      { once: true } //重複阻止
-    );
-  };
-  
-  // クリックで発動
-  let flag = true;
-  button.addEventListener("click", ()=>{
-    if(onAir){
-      const audios = document.querySelectorAll("audio");
-      audios.forEach((audio) => {
-        audio.pause();
-        flag = true;
-      });
-    } else if(flag) {
-      document.getElementById(`audio_${currentIndex}`).play();
-      playAudio(currentIndex);
-      flag = false;
-    };
-  });
+const background = document.querySelector(".play");
+const button = document.getElementById("play-button");
+const audios = document.querySelectorAll("audio");
+let currentIndex = 0;
+let onAir = false;
+let array = []
 
-  // クリックなしで順次再生
-  audios.forEach((audio) => {
-    audio.addEventListener("play", () => {
-      playAudio(currentIndex);
-    },
-    { once: true }
-    );
-  });
-
-  // Audio二重起動の防止
-  const ary = [];
-  audios.forEach((audio) => {
-    audio.addEventListener("play", () => {
-      ary.push(audio.id);
-      for (let i = 0; i < ary.length-1; i++){
-        document.getElementById(ary[i]).pause();
-      };
-    });
-    audio.addEventListener("pause", () => {
-      ary.shift();
-    });
-  });
-
+// 補助関数
+function colorful(){
+  background.classList.remove("grayscale");
+  background.classList.add("colorful");
 };
-window.addEventListener('turbo:load', autoplay);
+function grayscale(){
+  background.classList.remove("colorful");
+  background.classList.add("grayscale");
+};
+function getAudioIndex(audio){
+  return audio.id.split("_")[1]
+}
+function resetArray(array){
+  array.splice(0)
+  Array.from(audios).map((a)=> array.push(a.id))
+}
+function stopByIndex(index){
+  document.getElementById(`audio_${index}`).pause()
+}
+function playByIndex(index){
+  document.getElementById(`audio_${index}`).play()
+}
+function pauseReset(array){
+  array.forEach((ele,index) => {
+    if(ele == "pause"){
+      array.splice(index, 1, `audio_${index}`)
+    };
+  })
+}
+function stopOther(array){
+  array.forEach((ele,index) => {
+    ele === true && stopByIndex(index)
+  })
+}
+function nextPlay(a){
+  let nextIndex = Number(getAudioIndex(a))+1
+  playByIndex(nextIndex)
+}
+
+// マイボタン関数
+function myButton(array){
+  console.log(`myButton:${array}`)
+  if ( array.includes(true) ) {
+    let index = array.indexOf(true)
+    stopByIndex(index)
+  } else if ( array.includes("pause") ) {
+    let index = array.indexOf("pause")
+    playByIndex(index)
+  } else {
+    playByIndex(0)
+  }
+};
+
+// オートカラー関数
+function autoColor(array){
+  array.includes(true) ? colorful() : grayscale()
+}
+
+// ----------- メイン関数 ----------- 
+function main(){
+  if (!button) return null;
+
+  resetArray(array)
+  console.log(`start:${array}`)
+
+  Array.from(audios).map((a)=> {
+    // 再生開始時のアクション
+    a.addEventListener("play",()=>{
+      stopOther(array)
+      array[getAudioIndex(a)] = true;
+      autoColor(array)
+      console.log(`play:${array}`)
+    })
+    // 再生停止時のアクション
+    a.addEventListener("pause",()=>{
+      pauseReset(array)
+      array[getAudioIndex(a)] = "pause";
+      autoColor(array)
+      console.log(`pause:${array}`)
+    })
+    // 再生終了時のアクション
+    a.addEventListener("ended",()=>{
+      console.log(`ended:${array}`)
+      nextPlay(a)
+    })
+  })
+  // マイボタンクリック時
+  button.addEventListener("click", ()=>{
+    myButton(array)
+  })
+}
+
+window.addEventListener('turbo:load', main());
