@@ -317,6 +317,17 @@ main {
 .sound-form-text{
   height: 60px;
 }
+
+.record-main{
+  margin: 30px auto ;
+  width: 350px;
+  font-size: 15px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* -------------------------------------------プロフィール部品 */
 .profile-wrapper{
   width: 100%;
