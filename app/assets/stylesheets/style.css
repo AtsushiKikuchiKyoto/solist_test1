@@ -317,17 +317,34 @@ main {
 .sound-form-text{
   height: 60px;
 }
-
+/* -------------------------------------------録音ボタン */
 .record-main{
   margin: 30px auto ;
-  width: 350px;
+  width: 100%;
   font-size: 15px;
   padding: 1rem;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
+.record-inner{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.record-confirm{
+  display: none;
+}
+.record-inner-text{
+  font-size: x-large;
+  font-weight: 600;
+}
 /* -------------------------------------------プロフィール部品 */
 .profile-wrapper{
   width: 100%;
@@ -518,5 +535,10 @@ a { color:#0000FF; text-decoration:none; }
   }
   .profile-form{
     width: 100%;
+  }
+  /* ------------------------------録音ボタン */
+  .record-inner-text{
+    font-size: medium;
+    font-weight: 300;
   }
 }

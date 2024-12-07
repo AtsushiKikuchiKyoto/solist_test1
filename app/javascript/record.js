@@ -1,57 +1,124 @@
-function uploadToRailsForm(blob) {
+let mediaRecorder;
+let localStream;
+const chunks = [];
+let audioUrl;
+const background = document.querySelector(".play");
+
+function uploadToForm(blob) {
   const fileField = document.querySelector('.sound-form-file');
-
-  // BlobをFileオブジェクトとして扱う
   const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
-
-  // DataTransfer APIでファイルを挿入
   const dataTransfer = new DataTransfer();
   dataTransfer.items.add(file);
   fileField.files = dataTransfer.files;
-
-  console.log("Blob has been added to the form");
 }
 
-function record(){
-  if (!document.querySelector(".sound-new")) return null;
+function createController(audioUrl){
+  const audioElement = document.createElement('audio');
+  audioElement.id = 'record-audio';
+  audioElement.controls = true;
+  document.getElementById('record-audio-space').appendChild(audioElement);
+  document.getElementById("record-audio").src = audioUrl
+}
 
-    let startButton = document.getElementById("record-start");
-    let stopButton = document.getElementById("record-stop");
-    let mediaRecorder;
-    let localStream;
-    const chunks = [];
-    let audioUrl;
+function JStest(){
+  let jsTest = document.querySelector(".record-confirm");
+  jsTest.style.display = "block";
+}
 
-  startButton.onclick = function () {
-    navigator.mediaDevices.getUserMedia({audio: true })
-    .then(function (stream) {
-      localStream = stream;
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
+function startRecordind(){
+  navigator.mediaDevices.getUserMedia({audio: true })
+  .then(function (stream) {
+    localStream = stream;
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
 
-    }).catch(function (err) {
-      console.log(err);
-    });
+function stopRecording(){
+  mediaRecorder.stop();
+  mediaRecorder.ondataavailable = function (event) {
+    // 録音データ生成
+    chunks.push(event.data);
+    const audioBlob = new Blob(chunks, { type: "audio/webm" });
+    audioUrl = URL.createObjectURL(audioBlob);
+    createController(audioUrl)
+    uploadToForm(audioBlob);
   }
+}
 
-  stopButton.onclick = function () {
-    mediaRecorder.stop();
-    mediaRecorder.ondataavailable = function (event) {
+function changeInnerText(string){
+  document.getElementById("record-inner-text").innerHTML = string;
+}
 
-      // 録音データ生成
-      chunks.push(event.data);
-      const audioBlob = new Blob(chunks, { type: "audio/webm" });
-      uploadToRailsForm(audioBlob);
-      audioUrl = URL.createObjectURL(audioBlob);
-      
-      // html audioタグで再生
-      document.getElementById("record-audio").src = audioUrl
+function colorful(){
+  background.classList.remove("grayscale");
+  background.classList.add("colorful");
+};
 
+function grayscale(){
+  background.classList.remove("colorful");
+  background.classList.add("grayscale");
+};
+
+function countDown(countdownTime){
+  changeInnerText(countdownTime);
+  const countdownInterval = setInterval(() => {
+    countdownTime -= 1;
+    changeInnerText(countdownTime);
+    if (countdownTime <= 0) {
+      clearInterval(countdownInterval);
     }
-    URL.revokeObjectURL(audioUrl);
-    localStream.getTracks().forEach(track => track.stop());
-  }
-}
+  }, 1000);
+};
 
-document.addEventListener('turbo:load', record);
-document.addEventListener('turbo:render', record);
+function fillinForm(){
+  const name = document.querySelector(".avatar-name").innerHTML;
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+  const text = `演奏：${name}  ${month}月${date}日`; 
+  const textArea = document.getElementById("text");
+  textArea.value = text;
+};
+
+// -------メイン関数-------
+function main(){
+  if (!document.querySelector(".sound-new")) return null;
+  JStest();
+  
+  let stage = "ready";
+  let recordButton = document.getElementById("record-inner");
+
+  recordButton.onclick = ()=>{
+    if(stage == "ready"){
+      stage = "recording"
+      colorful();
+
+      let countdownTime = 5; // カウントダウンの秒数
+      countDown(countdownTime);
+      setTimeout(()=>{
+        changeInnerText("Rec");
+        startRecordind();
+      }, countdownTime * 1000 );
+
+    } else if (stage == "recording"){
+      stage = "finished"
+
+      stopRecording();
+      changeInnerText("完了");
+      grayscale();
+      fillinForm();
+
+      URL.revokeObjectURL(audioUrl);
+      localStream.getTracks().forEach(track => track.stop());
+
+    } else if (stage == "finished"){
+      stage = "ready";
+      changeInnerText("録音開始");
+    };
+  };
+};
+
+document.addEventListener('turbo:load', main);
