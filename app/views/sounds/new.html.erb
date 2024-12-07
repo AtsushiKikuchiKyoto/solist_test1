@@ -4,7 +4,22 @@
     <p>間違っていても大丈夫。気軽に音楽をアウトプットしましょう！</p><br>
     <%= link_to "サウンド投稿方法の説明ページはこちら", howto_path(anchor: "howto-sound") %>
 
+<%# --------録音ボタン-------- %>
+  <div class="record-main">
+      <div class="record-confirm">
+        <div class="play grayscale">
+          <div class="record-inner" id="record-inner">
+            <div class="record-inner-text" id="record-inner-text">録音<br>開始</div>
+          </div>
+        </div>
+      </div>
+      <div id="record-audio-space">
+      </div>
+  </div>
+
     <%= render partial: "form" %>
 
   </section>
+
+
 </main>
