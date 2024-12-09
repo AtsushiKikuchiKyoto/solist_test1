@@ -482,7 +482,7 @@ main {
 }
 /* ------------------------------------------共通フォント */
 
-.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name,.alert{
+.user-login,.user-signup,.sound-text,.error-message,.profile-new,.sound-new,.record-inner-text,.profile-box,.profile-text,.sound-actions,.sound-actions-text,.comment-form-text,.comment-name,.comment-text,.sound-name,.avatar-name,.alert{
   font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
   /* color: red; */
 }
