@@ -25,15 +25,16 @@ function JStest(){
   jsTest.style.display = "block";
 }
 
-function startRecordind(){
+function micPermit(){
   navigator.mediaDevices.getUserMedia({audio: true })
   .then(function (stream) {
-    localStream = stream;
-    mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.start();
-  }).catch(function (err) {
-    console.log(err);
+  localStream = stream;
+  mediaRecorder = new MediaRecorder(stream);
   });
+};
+
+function startRecordind(){
+    mediaRecorder.start();
 }
 
 function stopRecording(){
@@ -87,15 +88,16 @@ function fillinForm(){
 function main(){
   if (!document.querySelector(".sound-new")) return null;
   JStest();
+  micPermit();
   
   let stage = "ready";
   let recordButton = document.getElementById("record-inner");
 
   recordButton.onclick = ()=>{
+
     if(stage == "ready"){
       stage = "recording"
       colorful();
-
       let countdownTime = 5; // カウントダウンの秒数
       countDown(countdownTime);
       setTimeout(()=>{
@@ -115,8 +117,11 @@ function main(){
       localStream.getTracks().forEach(track => track.stop());
 
     } else if (stage == "finished"){
-      stage = "ready";
-      changeInnerText("録音開始");
+      stage = "reload";
+      changeInnerText("やり<br>直し");
+      
+    } else if (stage == "reload"){
+      window.location.reload();
     };
   };
 };
