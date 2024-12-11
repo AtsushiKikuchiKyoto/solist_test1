@@ -117,8 +117,11 @@ function main(){
       localStream.getTracks().forEach(track => track.stop());
 
     } else if (stage == "finished"){
-      stage = "ready";
-      changeInnerText("録音開始");
+      stage = "reload";
+      changeInnerText("やり<br>直し");
+      
+    } else if (stage == "reload"){
+      window.location.reload();
     };
   };
 };
