@@ -88,18 +88,16 @@ function fillinForm(){
 function main(){
   if (!document.querySelector(".sound-new")) return null;
   JStest();
+  micPermit();
   
   let stage = "ready";
   let recordButton = document.getElementById("record-inner");
 
   recordButton.onclick = ()=>{
 
-    micPermit();
-
     if(stage == "ready"){
       stage = "recording"
       colorful();
-
       let countdownTime = 5; // カウントダウンの秒数
       countDown(countdownTime);
       setTimeout(()=>{
