@@ -25,15 +25,16 @@ function JStest(){
   jsTest.style.display = "block";
 }
 
-function startRecordind(){
+function micPermit(){
   navigator.mediaDevices.getUserMedia({audio: true })
   .then(function (stream) {
-    localStream = stream;
-    mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.start();
-  }).catch(function (err) {
-    console.log(err);
+  localStream = stream;
+  mediaRecorder = new MediaRecorder(stream);
   });
+};
+
+function startRecordind(){
+    mediaRecorder.start();
 }
 
 function stopRecording(){
@@ -92,6 +93,9 @@ function main(){
   let recordButton = document.getElementById("record-inner");
 
   recordButton.onclick = ()=>{
+
+    micPermit();
+
     if(stage == "ready"){
       stage = "recording"
       colorful();
